@@ -1,0 +1,1 @@
+Each tile should be 64 x 64. AKA all tiles have to be upscaled by a factor of 2
