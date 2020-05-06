@@ -1,7 +1,5 @@
 package com.charlyffs.main;
 
-//Test
-
 public final class GameObserver {
     
     private Game game;
