@@ -18,7 +18,7 @@ public final class GameObserver {
     public static void main(String[] args) {
         new GameObserver();
     }
-    
+    //
     public GameObserver() {
         thread2 = new Thread(new FXMLManager());
         thread2.start();
