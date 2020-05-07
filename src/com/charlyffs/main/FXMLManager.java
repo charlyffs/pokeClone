@@ -30,4 +30,5 @@ public class FXMLManager extends Application implements Runnable {
         
         stage.show();
     }
+    
 }

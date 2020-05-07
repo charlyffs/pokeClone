@@ -38,4 +38,5 @@ public class PokeCenter extends GameObject {
         g.setColor(Color.red);
         g.drawRect(getX(), getY(), width * 32, height * 32);
     }
+    
 }

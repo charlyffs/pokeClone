@@ -19,6 +19,4 @@ public class Potion extends Item {
         return false;
     }
     
-    
-    
 }

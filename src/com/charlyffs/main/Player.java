@@ -11,19 +11,15 @@ public class Player extends GameObject {
     private int gender; //0 = male, 1 = female
     private BufferedImageLoader loader = new BufferedImageLoader();
     private String path;
+    private static int balance;
     
-    Player(ID id, int x, int y, Handler handler, int range, int gender, String name) {
+    Player(ID id, int x, int y, Handler handler, int gender, String name) {
         super(id, x, y, handler);
-        this.range = range;
         this.gender = gender;
         this.name = name;
         pokemon = new ArrayList<>();
         inventory = new ArrayList<>();
-    
-        for (int i = 0; i < 10; i++) {
-            inventory.add(new Potion("Healing potion", 50));
-            inventory.add(new Pokeball("Pokeball"));
-        }
+        balance = 100;
         
         path = gender == 0 ? "/male.png" : "/female.png";
     }
@@ -46,25 +42,30 @@ public class Player extends GameObject {
     
         if (handler.isLeft()) velX = -5;
         else if(!handler.isRight()) velX = 0;
+        
     }
     
     //Distance that will be used for pseudo-raycasting
-    private final int range;
+    private final int range = 4;
     
     //private int width = 31, height = 31;
     /**
      * Casts a rectangle in each direction to detect collisions with other GameObjects.
      */
+    
+    private Rectangle up, down, left, right;
+    
+        
     private void collision() {
         for (GameObject gameObject : handler.objects) {
             if (gameObject.getId() == ID.Block) {
-                if (new Rectangle(x, y - range, 32, range).intersects(gameObject.getBounds()))
+                if (up.intersects(gameObject.getBounds()))
                     handler.setUp(false);
-                if (new Rectangle(x, y + 48, 32, range).intersects(gameObject.getBounds()))
+                if (down.intersects(gameObject.getBounds()))
                     handler.setDown(false);
-                if (new Rectangle(x + 32, y, range, 48).intersects(gameObject.getBounds()))
+                if (left.intersects(gameObject.getBounds()))
                     handler.setRight(false);
-                if (new Rectangle(x - range, y, range, 48).intersects(gameObject.getBounds()))
+                if (right.intersects(gameObject.getBounds()))
                     handler.setLeft(false);
             }
         }
@@ -75,12 +76,17 @@ public class Player extends GameObject {
      * @param g Graphics data
      */
     public void render(Graphics g) {
+        up = new Rectangle(x + 6, y - range + 32, 20, range);
+        down = new Rectangle(x + 6, y + 48, 20, range);
+        left = new Rectangle(x + 32, y + 37, range, 8);
+        right = new Rectangle(x - range, y + 37, range, 8);
+        
         g.drawImage(loader.loadImage(path), x, y, null);
         //todo remove debug raycast boxes
-        g.drawRect(x, y - range, 32, range);
-        g.drawRect(x, y + 48, 32, range);
-        g.drawRect(x + 32, y, range, 48);
-        g.drawRect(x - range, y, range, 48);
+        g.drawRect((int) up.getX(), (int) up.getY(), (int) up.getWidth(), (int) up.getHeight());
+        g.drawRect((int) down.getX(), (int) down.getY(), (int) down.getWidth(), (int) down.getHeight());
+        g.drawRect((int) left.getX(), (int) left.getY(), (int) left.getWidth(), (int) left.getHeight());
+        g.drawRect((int) right.getX(), (int) right.getY(), (int) right.getWidth(), (int) right.getHeight());
     }
     
     public static ArrayList<Pokemon> getPokemon() {
@@ -101,4 +107,9 @@ public class Player extends GameObject {
                 ", range=" + range +
                 '}';
     }
+    
+    public static int getBalance() {
+        return balance;
+    }
+    
 }

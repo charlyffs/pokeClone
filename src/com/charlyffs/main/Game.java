@@ -33,7 +33,7 @@ public class Game extends Canvas implements Runnable {
         new Window(width, height, "PokeClone", this);
         
         handler = new Handler();
-        player = new Player(ID.Player, 400, 200, handler, 5, playerGender, playerName);
+        player = new Player(ID.Player, 400, 200, handler, playerGender, playerName);
         handler.addObject(player);
         try {
             Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
@@ -180,6 +180,7 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Transition(992, 543, handler, 214, 947, 1,1));
         handler.addObject(new Transition(192, 992, handler, 1028, 547, 1,2));
         handler.addObject(new PokeCenter(160, 864, handler, 1, 2));
+        handler.addObject(new Store(608, 832, handler, 1, 1));
         
     }
     
