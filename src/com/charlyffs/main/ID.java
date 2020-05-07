@@ -7,5 +7,7 @@ public enum ID {
     Player(),
     Transition(),
     Encounter(),
-    Block()
+    Block(),
+    PokeCenter(),
+    Store()
 }

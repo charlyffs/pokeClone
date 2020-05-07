@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Transition extends GameObject {
     
-    private int targetX, targetY;
-    private int width, height;
+    private final int targetX, targetY;
+    private final int width, height;
     
     public Transition(int x, int y, Handler handler, int targetX, int targetY, int height, int width) {
         super(ID.Transition, x, y, handler);

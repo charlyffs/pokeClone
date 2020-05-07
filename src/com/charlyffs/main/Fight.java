@@ -109,9 +109,6 @@ public class Fight {
         alert.showAndWait();
         //Give out xp
         pokemonInventory.add(pokemonIndex, playerPokemon);
-        for (Pokemon pokemon : pokemonInventory) {
-            pokemon.reset();
-        }
         enemyPokemon.reset();
         FXMLManager.stage.hide();
         GameObserver.stopFight();

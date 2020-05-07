@@ -1,4 +1,5 @@
 package com.charlyffs.main;
+import javax.print.attribute.HashAttributeSet;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -54,7 +55,7 @@ public class Game extends Canvas implements Runnable {
         levelArt = loader.loadImage("/Art.png");
         
         loadLevel(geometry);
-        handler.addObject(new Encounter(ID.Encounter, 456, 356, handler));
+        handler.addObject(new Encounter(456, 356, handler));
     }
     
     /**
@@ -171,11 +172,15 @@ public class Game extends Canvas implements Runnable {
                 }
             }
         }
+        //Transitions between areas
         handler.addObject(new Transition(383, 0, handler, 1104, 560, 2,2));
+        handler.addObject(new Transition(1056, 0, handler, 397, 100, 2,4));
         handler.addObject(new Transition(1248, 224, handler, 624, 905, 1,1));
         handler.addObject(new Transition(608, 960, handler, 1247, 258, 1,2));
         handler.addObject(new Transition(992, 543, handler, 214, 947, 1,1));
         handler.addObject(new Transition(192, 992, handler, 1028, 547, 1,2));
+        handler.addObject(new PokeCenter(160, 864, handler, 1, 2));
+        
     }
     
     private Boolean colorsEqual(int num) {

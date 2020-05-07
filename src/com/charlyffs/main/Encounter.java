@@ -8,8 +8,8 @@ public class Encounter extends GameObject {
     private boolean collides = false, newCollides = false;
     private final Random RNG = new Random();
     
-    public Encounter(ID id, int x, int y, Handler handler) {
-        super(id, x, y, handler);
+    public Encounter(int x, int y, Handler handler) {
+        super(ID.Encounter, x, y, handler);
     }
     
     @Override
