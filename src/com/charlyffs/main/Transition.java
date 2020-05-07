@@ -5,11 +5,14 @@ import java.awt.*;
 public class Transition extends GameObject {
     
     private int targetX, targetY;
+    private int width, height;
     
-    public Transition(ID id, int x, int y, Handler handler, int targetX, int targetY) {
-        super(id, x, y, handler);
+    public Transition(int x, int y, Handler handler, int targetX, int targetY, int height, int width) {
+        super(ID.Transition, x, y, handler);
         this.targetX = targetX;
         this.targetY = targetY;
+        this.width = width;
+        this.height = height;
     }
     
     @Override
@@ -20,7 +23,7 @@ public class Transition extends GameObject {
     private void collision() {
         for (GameObject gameObject : handler.objects) {
             if (gameObject.getId() == ID.Player) {
-                if (new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds())) {
+                if (new Rectangle(x, y, width * 32, height * 32).intersects(gameObject.getBounds())) {
                     gameObject.setX(targetX);
                     gameObject.setY(targetY);
                 }
@@ -31,6 +34,6 @@ public class Transition extends GameObject {
     @Override
     public void render(Graphics g) {
         g.setColor(Color.yellow);
-        g.drawRect(getX(), getY(), 32, 32);
+        g.drawRect(getX(), getY(), width * 32, height * 32);
     }
 }

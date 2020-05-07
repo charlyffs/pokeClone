@@ -60,7 +60,7 @@ public class Pokemon implements Cloneable{
     
     private void evolve() {
         //todo Turn this pokemon into evolution
-//        name = evolution.getName();
+        //name = evolution.getName();
         //change sprites, moves maybe?
     }
     

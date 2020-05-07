@@ -7,6 +7,14 @@ public final class GameObserver {
     public static Fight fight;
     public static volatile boolean flag = false;
     
+    //TODO add:
+    // pokemon bank. Maximum of 6 in inventory at a time.
+    // store
+    // pokemon center
+    // give money on fights.
+    // gym.
+    // sort out transitions
+    
     public static void main(String[] args) {
         new GameObserver();
     }

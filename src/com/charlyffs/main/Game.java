@@ -169,14 +169,13 @@ public class Game extends Canvas implements Runnable {
                 if (red == 255) {
                     handler.addObject(new Block(ID.Block, x, y, handler));
                 }
-                if (colorsEqual(1)) {
-                    handler.addObject(new Transition(ID.Transition, x, y, handler, 1160, 545));
-                }
-                if (colorsEqual(2)) {
-                    handler.addObject(new Transition(ID.Transition, x, y, handler, 400, 60));
-                }
             }
         }
+        handler.addObject(new Transition(383, 0, handler, 1104, 560, 2,2));
+        handler.addObject(new Transition(1248, 224, handler, 624, 905, 1,1));
+        handler.addObject(new Transition(608, 960, handler, 1247, 258, 1,2));
+        handler.addObject(new Transition(992, 543, handler, 214, 947, 1,1));
+        handler.addObject(new Transition(192, 992, handler, 1028, 547, 1,2));
     }
     
     private Boolean colorsEqual(int num) {
