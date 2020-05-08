@@ -2,11 +2,13 @@ package com.charlyffs.main;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -18,6 +20,7 @@ public final class GameObserver extends Application {
     public static AnchorPane rootPane;
     private static Thread thread1, thread2;
     public static Fight fight;
+    public static StoreController store;
     public static volatile boolean flag = false;
     
     public static Stage stage;
@@ -48,6 +51,8 @@ public final class GameObserver extends Application {
         showStage();
     }
     
+    private static boolean once = false;
+    
     //Swaps between fight and store UI
     public static void switchStage(String title) {
         System.out.println("switch stage");
@@ -55,17 +60,24 @@ public final class GameObserver extends Application {
             try {
                 Parent root = loader.getRoot();
                 stage.setScene(new Scene(root));
-                stage.setResizable(false);
                 stage.setTitle(title);
+                if (!once) {
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.setResizable(false);
+                    once = true;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            stage.show();
         });
         
     }
     
     //On closing main menu, this is called.
     public static void startGame() {
+        hideStage();
+        
         game = new Game();
         thread1 = new Thread(game);
         thread1.setName("Game");
@@ -85,13 +97,13 @@ public final class GameObserver extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            store = loader.getController();
             switchStage("Store");
+            store.balanceLabel.setText("" + Player.getBalance());
         });
     }
     
     static void startFight(Pokemon enemy) {
-        showStage();
-        System.out.println("Start fight");
         if (loader.getController() != fight) {
             loader = new FXMLLoader(GameObserver.class.getResource("Fight.fxml"));
             try {
@@ -104,22 +116,25 @@ public final class GameObserver extends Application {
             switchStage("Fight");
             System.out.println("Stage switched");
         }
+        showStage();
         fight.startFight(enemy);
         thread1.suspend();
     }
     
-    public static void stopFight() {
+    public static void backToGame() {
         hideStage();
         thread1.resume();
     }
     
-    private static void showStage() {
-        Platform.runLater(() -> stage.show());
+    public static void showStage() {
+        System.out.println("Show stage...");
+        Platform.runLater(() -> stage.toFront());
     }
     
     
-    private static void hideStage() {
-//        Platform.runLater(() -> stage.hide());
+    public static void hideStage() {
+        System.out.println("Hide stage...");
+        Platform.runLater(() -> stage.toBack());
     }
     
     

@@ -20,7 +20,7 @@ public class Player extends GameObject {
         pokemon = new ArrayList<>();
         inventory = new ArrayList<>();
         balance = 100;
-        
+    
         path = gender == 0 ? "/male.png" : "/female.png";
     }
     
@@ -77,7 +77,7 @@ public class Player extends GameObject {
      */
     public void render(Graphics g) {
         up = new Rectangle(x + 6, y - range + 32, 20, range);
-        down = new Rectangle(x + 6, y + 48, 20, range);
+        down = new Rectangle(x + 6, y + 50, 20, range);
         left = new Rectangle(x + 32, y + 37, range, 8);
         right = new Rectangle(x - range, y + 37, range, 8);
         

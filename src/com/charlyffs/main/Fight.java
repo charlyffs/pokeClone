@@ -28,6 +28,7 @@ public class Fight {
     private int pokemonIndex;
     
     void startFight(Pokemon enemy) {
+        System.out.println("Starting fight...");
         //Set all data for current fight.
         Platform.runLater(() -> {
             this.pokemonInventory = Player.getPokemon();
@@ -100,7 +101,8 @@ public class Fight {
         //Give out xp
         pokemonInventory.add(pokemonIndex, playerPokemon);
         enemyPokemon.reset();
-        GameObserver.stopFight();
+        GameObserver.hideStage();
+        GameObserver.backToGame();
     }
     
     private void printData() {

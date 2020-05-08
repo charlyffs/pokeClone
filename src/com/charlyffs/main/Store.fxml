@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="231.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.StoreController">
+<AnchorPane prefHeight="270.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.StoreController">
    <children>
       <Button layoutX="14.0" layoutY="174.0" mnemonicParsing="false" onAction="#buyPokeball" prefWidth="82.0" text="Buy">
          <font>
@@ -41,13 +41,14 @@
       </Label>
       <ImageView fitHeight="63.0" fitWidth="66.0" layoutX="155.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/potion.png" />
+            <Image url="@/potion.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="48.0" fitWidth="66.0" layoutX="30.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../res/pokeball.png" />
+            <Image url="@/pokeball.png" />
          </image>
       </ImageView>
+      <Button layoutX="68.0" layoutY="229.0" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="26.0" prefWidth="97.0" text="Exit" />
    </children>
 </AnchorPane>

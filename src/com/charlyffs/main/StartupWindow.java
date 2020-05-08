@@ -52,18 +52,8 @@ public class StartupWindow {
         Game.playerName = nameField.getText();
         Game.playerGender = gender;
         GameObserver.flag = true;
-    
-//        GameObserver.stage.hide();
+        
         GameObserver.startGame();
-//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fight.fxml"));
-//
-
-//
-//        GameObserver.fight = loader.getController();
-
-//
-//        FXMLManager.stage.setHeight(323);
-//        FXMLManager.stage.setWidth(524);
     }
     
     public void maleSelect(ActionEvent actionEvent) {

@@ -10,7 +10,7 @@ public class StoreController {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     
     public void buyPotion() {
-        if (Player.getBalance() > 10) {
+        if (Player.getBalance() >= 10) {
             Player.balance -= 10;
             balanceLabel.setText("" + Player.balance);
             alert.setHeaderText("You bought one potion");
@@ -23,7 +23,7 @@ public class StoreController {
     
     
     public void buyPokeball() {
-        if (Player.getBalance() > 10) {
+        if (Player.getBalance() >= 10) {
             Player.balance -= 10;
             balanceLabel.setText("" + Player.balance);
             alert.setHeaderText("You bought one pokeball");
@@ -34,4 +34,7 @@ public class StoreController {
         alert.showAndWait();
     }
     
+    public void exitButtonClicked(ActionEvent actionEvent) {
+    
+    }
 }

@@ -29,7 +29,6 @@ public class Game extends Canvas implements Runnable {
     Game() {
         DataBase.fillTable();
         DataBase.fillPokeDex();
-        DataBase.showTable();
         new Window(width, height, "PokeClone", this);
         
         handler = new Handler();
@@ -168,7 +167,7 @@ public class Game extends Canvas implements Runnable {
                 green = (pixel >> 8) & 0xff;
                 blue = (pixel) & 0xff;
                 if (red == 255) {
-                    handler.addObject(new Block(ID.Block, x, y, handler));
+                    handler.addObject(new Block(ID.Block, x, y - 1, handler));
                 }
             }
         }
