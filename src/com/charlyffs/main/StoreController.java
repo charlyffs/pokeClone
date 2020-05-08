@@ -11,6 +11,8 @@ public class StoreController {
     
     public void buyPotion() {
         if (Player.getBalance() > 10) {
+            Player.balance -= 10;
+            balanceLabel.setText("" + Player.balance);
             alert.setHeaderText("You bought one potion");
             Player.getInventory().add(new Potion("Healing potion", 50));
         } else {
@@ -22,7 +24,9 @@ public class StoreController {
     
     public void buyPokeball() {
         if (Player.getBalance() > 10) {
-            alert.setHeaderText("You bought one potion");
+            Player.balance -= 10;
+            balanceLabel.setText("" + Player.balance);
+            alert.setHeaderText("You bought one pokeball");
             Player.getInventory().add(new Pokeball("Pokeball"));
         } else {
             alert.setHeaderText("You don't have enough money for that.");

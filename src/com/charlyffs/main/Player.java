@@ -11,7 +11,7 @@ public class Player extends GameObject {
     private int gender; //0 = male, 1 = female
     private BufferedImageLoader loader = new BufferedImageLoader();
     private String path;
-    private static int balance;
+    public static int balance;
     
     Player(ID id, int x, int y, Handler handler, int gender, String name) {
         super(id, x, y, handler);

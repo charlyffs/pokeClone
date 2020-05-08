@@ -1,5 +1,7 @@
 package com.charlyffs.main;
 
+import javafx.application.Platform;
+
 import java.awt.*;
 
 public class Store extends GameObject {
@@ -23,8 +25,8 @@ public class Store extends GameObject {
             if (gameObject.getId() == ID.Player) {
                 newCollides = new Rectangle(x, y, width * 32, height * 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    
                     System.out.println("Entered store");
+                    GameObserver.openStore();
                 }
             }
             collides = newCollides;

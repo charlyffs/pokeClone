@@ -23,7 +23,6 @@ public class StartupWindow {
     public RadioButton bulbasaurRadio, charmanderRadio, squirtleRadio, maleRadio, femaleRadio;
     public ImageView playerPicture;
     public ImageView pokemonPicture;
-    public AnchorPane rootPane;
     private String name;
     private int gender, pokemonIndex;
     
@@ -53,17 +52,18 @@ public class StartupWindow {
         Game.playerName = nameField.getText();
         Game.playerGender = gender;
         GameObserver.flag = true;
-        
-        FXMLManager.stage.hide();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fight.fxml"));
-        
-        AnchorPane pane = loader.load();
-        
-        GameObserver.fight = loader.getController();
-        rootPane.getChildren().setAll(pane);
     
-        FXMLManager.stage.setHeight(323);
-        FXMLManager.stage.setWidth(524);
+//        GameObserver.stage.hide();
+        GameObserver.startGame();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("Fight.fxml"));
+//
+
+//
+//        GameObserver.fight = loader.getController();
+
+//
+//        FXMLManager.stage.setHeight(323);
+//        FXMLManager.stage.setWidth(524);
     }
     
     public void maleSelect(ActionEvent actionEvent) {

@@ -22,48 +22,38 @@ public class Fight {
     public Button action1Button, action2Button, action3Button, action4Button;
     
     public ImageView playerImageView, enemyImageView,item1Image, item2Image, item3Image;
-    private Player player;
     private ArrayList<Pokemon> pokemonInventory;
     private Pokemon playerPokemon, enemyPokemon;
     private ArrayList<Item> inventory;
     private int pokemonIndex;
     
-    void startFight(Player player, Pokemon enemy) {
-        Platform.runLater(() -> {
-            try {
-                FXMLManager.stage.show();
-            } catch (Exception e) {
-                System.out.println("Failed to show stage");
-                e.printStackTrace();
-            }
-        });
-        
+    void startFight(Pokemon enemy) {
         //Set all data for current fight.
-        this.player = player;
-        this.pokemonInventory = Player.getPokemon();
-        inventory = Player.getInventory();
-        pokemonIndex = 0;
-        this.playerPokemon = pokemonInventory.get(0);
-        pokemonInventory.remove(0);
+        Platform.runLater(() -> {
+            this.pokemonInventory = Player.getPokemon();
+            inventory = Player.getInventory();
+            pokemonIndex = 0;
+            this.playerPokemon = pokemonInventory.get(0);
+            pokemonInventory.remove(0);
+            
+            this.enemyPokemon = enemy;
+            enemyImageView.setImage(new Image(enemy.getURL()));
+            enemyLevel.setText("Level: " + enemyPokemon.getLevel());
+            enemyName.setText(enemyPokemon.getName());
         
-        setPokemonVisuals();
+            setPokemonVisuals();
+            updateBars();
+            printData();
         
-        this.enemyPokemon = enemy;
-        enemyImageView.setImage(new Image(enemy.getURL()));
-        enemyLevel.setText("Level: " + enemyPokemon.getLevel());
-        enemyName.setText(enemyPokemon.getName());
-        
-        updateBars();
-        printData();
-    
-        fightBtnState = true;
-        invBtnState = false;
-        pokemonBtnState = false;
-        fightButtonClick();
-        invBtnState = true;
-        bagButtonClicked();
-        pokemonBtnState = true;
-        pokemonButtonClick();
+            fightBtnState = true;
+            invBtnState = false;
+            pokemonBtnState = false;
+            fightButtonClick();
+            invBtnState = true;
+            bagButtonClicked();
+            pokemonBtnState = true;
+            pokemonButtonClick();
+        });
     }
     
     private void setPokemonVisuals() {
@@ -110,7 +100,6 @@ public class Fight {
         //Give out xp
         pokemonInventory.add(pokemonIndex, playerPokemon);
         enemyPokemon.reset();
-        FXMLManager.stage.hide();
         GameObserver.stopFight();
     }
     

@@ -20,10 +20,10 @@
       <RadioButton fx:id="bulbasaurRadio" layoutX="279.0" layoutY="343.0" mnemonicParsing="false" onAction="#bulbasaurSelect" selected="true" text="Bulbasaur" />
       <RadioButton fx:id="charmanderRadio" layoutX="370.0" layoutY="343.0" mnemonicParsing="false" onAction="#charmanderSelect" text="Charmander" />
       <RadioButton fx:id="squirtleRadio" layoutX="483.0" layoutY="343.0" mnemonicParsing="false" onAction="#squirtleSelect" text="Squirtle" />
-      <Button layoutX="31.0" layoutY="352.0" mnemonicParsing="false" onAction="#startClicked" prefHeight="26.0" prefWidth="209.0" text="Comenzar" />
-      <RadioButton fx:id="maleRadio" layoutX="45.0" layoutY="304.0" mnemonicParsing="false" onAction="#maleSelect" selected="true" text="Hombre" />
-      <RadioButton fx:id="femaleRadio" layoutX="157.0" layoutY="304.0" mnemonicParsing="false" onAction="#femaleSelect" text="Mujer" />
-      <Label layoutX="15.0" layoutY="267.0" text="Nombre:" />
+      <Button layoutX="31.0" layoutY="352.0" mnemonicParsing="false" onAction="#startClicked" prefHeight="26.0" prefWidth="209.0" text="Start" />
+      <RadioButton fx:id="maleRadio" layoutX="45.0" layoutY="304.0" mnemonicParsing="false" onAction="#maleSelect" selected="true" text="Boy" />
+      <RadioButton fx:id="femaleRadio" layoutX="157.0" layoutY="304.0" mnemonicParsing="false" onAction="#femaleSelect" text="Girl" />
+      <Label layoutX="15.0" layoutY="267.0" text="Name:" />
       <ImageView fx:id="playerPicture" fitHeight="190.0" fitWidth="200.0" layoutX="36.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@/male.png" />
