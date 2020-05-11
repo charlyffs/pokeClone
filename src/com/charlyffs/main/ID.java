@@ -9,5 +9,6 @@ public enum ID {
     Encounter(),
     Block(),
     PokeCenter(),
-    Store()
+    Store(),
+    Bank()
 }

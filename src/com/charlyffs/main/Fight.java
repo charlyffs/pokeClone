@@ -93,12 +93,12 @@ public class Fight {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
          if (enemyPokemon.getCurrentHP() < 1) {
             alert.setHeaderText("WIN");
-             playerPokemon.endOfBattle();
+            Player.setBalance(Player.getBalance() + 15);
+            playerPokemon.endOfBattle();
         } else {
             alert.setHeaderText("LOSE");
         }
         alert.showAndWait();
-        //Give out xp
         pokemonInventory.add(pokemonIndex, playerPokemon);
         enemyPokemon.reset();
         GameObserver.hideStage();

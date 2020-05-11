@@ -180,6 +180,9 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Transition(192, 992, handler, 1028, 547, 1,2));
         handler.addObject(new PokeCenter(160, 864, handler, 1, 2));
         handler.addObject(new Store(608, 832, handler, 1, 1));
+        //320
+        //816
+        handler.addObject(new bankTrigger(514, 513, handler, 1, 1));
         
     }
     

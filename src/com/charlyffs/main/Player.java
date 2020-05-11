@@ -7,6 +7,7 @@ public class Player extends GameObject {
     
     private static ArrayList<Pokemon> pokemon;
     private static ArrayList<Item> inventory;
+    private static ArrayList<Pokemon> bank;
     private String name;
     private int gender; //0 = male, 1 = female
     private BufferedImageLoader loader = new BufferedImageLoader();
@@ -19,6 +20,7 @@ public class Player extends GameObject {
         this.name = name;
         pokemon = new ArrayList<>();
         inventory = new ArrayList<>();
+        bank = new ArrayList<>();
         balance = 100;
     
         path = gender == 0 ? "/male.png" : "/female.png";
@@ -54,7 +56,6 @@ public class Player extends GameObject {
      */
     
     private Rectangle up, down, left, right;
-    
         
     private void collision() {
         for (GameObject gameObject : handler.objects) {
@@ -97,6 +98,10 @@ public class Player extends GameObject {
         return inventory;
     }
     
+    public static ArrayList<Pokemon> getBank() {
+        return bank;
+    }
+    
     @Override
     public String toString() {
         return "Player{" +
@@ -110,6 +115,14 @@ public class Player extends GameObject {
     
     public static int getBalance() {
         return balance;
+    }
+    
+    public static void setBalance(int balance) {
+        Player.balance = balance;
+    }
+    
+    public static void addToBank(Pokemon pokemon) {
+        bank.add(pokemon);
     }
     
 }

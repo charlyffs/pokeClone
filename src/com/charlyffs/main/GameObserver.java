@@ -16,11 +16,13 @@ import java.util.concurrent.ExecutionException;
 public final class GameObserver extends Application {
     
     private static FXMLLoader loader;
+    
     private static Game game;
-    public static AnchorPane rootPane;
-    private static Thread thread1, thread2;
     public static Fight fight;
     public static StoreController store;
+    public static Bank bank;
+    
+    private static Thread thread1;
     public static volatile boolean flag = false;
     
     public static Stage stage;
@@ -103,6 +105,23 @@ public final class GameObserver extends Application {
         });
     }
     
+    public static void openBank() {
+    
+        Platform.runLater(() -> {
+    
+            loader = new FXMLLoader(GameObserver.class.getResource("Bank.fxml"));
+            try {
+                loader.load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            bank = loader.getController();
+            switchStage("Bank");
+            bank.updatePreviews();
+        });
+        
+    }
+    
     static void startFight(Pokemon enemy) {
         if (loader.getController() != fight) {
             loader = new FXMLLoader(GameObserver.class.getResource("Fight.fxml"));
@@ -131,12 +150,10 @@ public final class GameObserver extends Application {
         Platform.runLater(() -> stage.toFront());
     }
     
-    
     public static void hideStage() {
         System.out.println("Hide stage...");
         Platform.runLater(() -> stage.toBack());
     }
-    
     
     public static void stopT1() throws InterruptedException {
         thread1.join();

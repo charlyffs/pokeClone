@@ -16,7 +16,13 @@ public class Pokeball extends Item {
             Random rng = new Random();
             if (rng.nextInt(10) > 1) {
                 System.out.println("Caught");
-                pokemon.add(enemy.clone());
+                if (pokemon.size() < 5) {
+                    System.out.println("Added to belt");
+                    pokemon.add(enemy.clone());
+                } else {
+                    System.out.println("Added to bank");
+                    Player.addToBank(enemy.clone());
+                }
                 pokemon.get(pokemon.size() - 1).reset();
                 enemy.damage(enemy.getCurrentHP());
             }
