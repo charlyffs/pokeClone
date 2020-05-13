@@ -25,7 +25,7 @@ public class Encounter extends GameObject {
                         handler.setRight(false);
                         System.out.println("Encounter.");
                         int x = RNG.nextInt(DataBase.getPokeDex().size());
-                        GameObserver.startFight(DataBase.getPokemon(x));
+                        GameObserver.startFight(DataBase.getPokemon(x).clone());
                     }
                 }
                 collides = newCollides;
