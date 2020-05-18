@@ -28,7 +28,6 @@ public class Game extends Canvas implements Runnable {
     Game() {
         DataBase.fillTable();
         DataBase.fillPokeDex();
-        //Graphics stuff.
         int width = 1280;
         int height = 720;
         new Window(width, height, "PokeClone", this);
@@ -36,16 +35,16 @@ public class Game extends Canvas implements Runnable {
         handler = new Handler();
         player = new Player(ID.Player, 400, 200, handler, playerGender, playerName);
         handler.addObject(player);
-        try {
-            Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
-            Player.getPokemon().add(DataBase.getPokemon(1).clone());
-            Player.getPokemon().add(DataBase.getPokemon(2).clone());
-            Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-            Player.getPokemon().get(0).setCurrentHP(99999);
-        } catch (Exception e) {
-            System.out.println("Clone failed");
-            e.printStackTrace();
-        }
+        
+        Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
+        Player.getPokemon().add(DataBase.getPokemon(1).clone());
+        Player.getPokemon().add(DataBase.getPokemon(2).clone());
+        Player.getInventory().add(new Potion("Potion", 50));
+        Player.getInventory().add(new Potion("Potion", 50));
+        Player.getInventory().add(new Potion("Potion", 50));
+        //Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+        //Player.getPokemon().get(0).setCurrentHP(99999);
+        
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
         camera = new Camera(0, 0);

@@ -1,7 +1,6 @@
 package com.charlyffs.main;
 
 import java.awt.*;
-import java.util.Random;
 
 public class Encounter extends GameObject {
     

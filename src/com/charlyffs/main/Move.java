@@ -2,7 +2,6 @@ package com.charlyffs.main;
 
 public abstract class Move {
     
-    protected Pokemon source;
     protected String name;
     protected int hp;
     

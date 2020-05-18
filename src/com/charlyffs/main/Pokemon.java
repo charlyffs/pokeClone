@@ -8,16 +8,18 @@ public class Pokemon implements Cloneable{
     private final int hp, type;
     private int currentHP, xp, xpCap, level;
     private final String name;
+    private boolean participated;
     
     public Pokemon(int hp, int level, int type, String name) {
         this.hp = hp;
         this.currentHP = hp;
         xp = 0;
-        this.xpCap = 50;
+        this.xpCap = 100;
         this.level = level;
         this.type = type;
         this.name = name;
         moves = new ArrayList<>();
+        participated = false;
     }
     
     public void addMove(int type, int subType, String name, int hp) {
@@ -45,8 +47,17 @@ public class Pokemon implements Cloneable{
         currentHP -= amount;
     }
     
+    public boolean isParticipated() {
+        return participated;
+    }
+    
+    public void setParticipated(boolean participated) {
+        this.participated = participated;
+    }
+    
     public void endOfBattle() {
         xp += 50;
+        participated = false;
         if (xp >= xpCap) {
             level += 1;
             xpCap += 100;
@@ -58,6 +69,19 @@ public class Pokemon implements Cloneable{
         //todo Turn this pokemon into evolution
         //name = evolution.getName();
         //change sprites, moves maybe?
+        //replace pokemon in belt with clone from database, set level and hp to be equal.
+    }
+    
+    public void reset() {
+        currentHP = hp;
+    }
+    
+    public int getCurrentHP() {
+        return currentHP;
+    }
+    
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
     }
     
     public int getType() {
@@ -76,24 +100,12 @@ public class Pokemon implements Cloneable{
         return hp;
     }
     
-    public int getCurrentHP() {
-        return currentHP;
-    }
-    
-    public String getURL() {
-        return "/Pokemon/" + name + "/" + name + ".png";
-    }
-    
-    public void reset() {
-        currentHP = hp;
-    }
-    
     public int getLevel() {
         return level;
     }
     
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
+    public String getURL() {
+        return "/Pokemon/" + name + "/" + name + ".png";
     }
     
     @Override
@@ -110,4 +122,3 @@ public class Pokemon implements Cloneable{
                 '}';
     }
 }
-

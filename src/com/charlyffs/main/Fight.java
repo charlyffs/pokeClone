@@ -8,7 +8,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -40,7 +39,8 @@ public class Fight {
             enemyPokemonList.add(DataBase.getPokeDex().get(RNG.nextInt(type)).clone());
         }
         enemyPokemon = enemyPokemonList.get(0);
-        
+    
+        playerPokemon = null;
         getLivingPokemon();
         
         inventory = Player.getInventory();
@@ -98,7 +98,11 @@ public class Fight {
          if (enemyPokemon.getCurrentHP() < 1) {
             alert.setHeaderText("WIN");
             Player.setBalance(Player.getBalance() + 15);
-            playerPokemon.endOfBattle();
+             for (Pokemon pokemon : pokemonInventory) {
+                 if (pokemon.isParticipated()) {
+                     pokemon.endOfBattle();
+                 }
+             }
         } else {
             alert.setHeaderText("LOSE");
         }
@@ -208,31 +212,21 @@ public class Fight {
     }
     
     private void updateInventoryButtons() {
-        int i = 0;
         invPrevPageBtn.setDisable(invPage == 0);
+        invNextPageBtn.setDisable(false);
+        setButtonStuff(invItem1Btn, invPage);
+        setButtonStuff(invItem2Btn, invPage + 1);
+        setButtonStuff(invItem3Btn, invPage + 2);
+    }
+    
+    private void setButtonStuff(Button button, int index) {
         try {
-                invItem1Btn.setText(inventory.get(invPage).getName());
-                invItem1Btn.setDisable(false);
-                invItem1Btn.setVisible(true);
-                i++;
-                invItem2Btn.setText(inventory.get(invPage + 1).getName());
-                invItem2Btn.setDisable(false);
-                invItem2Btn.setVisible(true);
-                i++;
-                invItem3Btn.setText(inventory.get(invPage + 2).getName());
-                invItem3Btn.setDisable(false);
-                invItem3Btn.setVisible(true);
-                invNextPageBtn.setDisable(false);
+            button.setText(inventory.get(index).getName());
+            button.setDisable(false);
+            button.setVisible(true);
         } catch (Exception e) {
             invNextPageBtn.setDisable(true);
-            switch (i) {
-                case 0:
-                    invItem1Btn.setVisible(false);
-                case 1:
-                    invItem2Btn.setVisible(false);
-                case 2:
-                    invItem3Btn.setVisible(false);
-            }
+            button.setVisible(false);
         }
     }
     
@@ -267,9 +261,12 @@ public class Fight {
                 break;
             }
         }
-        pokemonInventory.remove(pokemonIndex);
         if (playerPokemon.getCurrentHP() <= 0) {
             quitFight();
+        } else {
+            pokemonInventory.remove(pokemonIndex);
+            playerPokemon.setParticipated(true);
+            changeTurn();
         }
     }
     
@@ -296,6 +293,7 @@ public class Fight {
         if (inventory.get(index).use(playerPokemon, enemyPokemon)) {
             inventory.remove(index);
             updateInventoryButtons();
+            updateBars();
             changeTurn();
         }
     }
@@ -331,14 +329,15 @@ public class Fight {
         setPokemonVisuals();
         changeTurn();
         updatePokemonInv();
+        playerPokemon.setParticipated(true);
     }
     
     private void enemyDead() {
         enemyPokemonList.remove(0);
         try {
             enemyPokemon = enemyPokemonList.get(0);
-            
         } catch (Exception e) {
+            pokemonInventory.add(pokemonIndex, playerPokemon);
             quitFight();
         }
     }

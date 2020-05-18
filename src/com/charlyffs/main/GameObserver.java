@@ -20,10 +20,7 @@ public final class GameObserver extends Application {
     public static Stage stage;
     
     //TODO add:
-    // pokemon bank. Maximum of 6 in inventory at a time.
-    // store
-    // pokemon center
-    // give money on fights.
+    // pokemon bank map
     // gym.
     // sort out transitions
     
