@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Pokemon implements Cloneable{
 
-    private ArrayList<Move> moves;
+    private final ArrayList<Move> moves;
     private final int hp, type;
     private int currentHP, xp, xpCap, level;
-    private String name;
+    private final String name;
     
     public Pokemon(int hp, int level, int type, String name) {
         this.hp = hp;
@@ -43,10 +43,6 @@ public class Pokemon implements Cloneable{
     
     public void damage(double amount) {
         currentHP -= amount;
-    }
-    
-    private void attack(int index, Pokemon target) {
-        moves.get(index).use(this, target);
     }
     
     public void endOfBattle() {
@@ -94,6 +90,10 @@ public class Pokemon implements Cloneable{
     
     public int getLevel() {
         return level;
+    }
+    
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
     }
     
     @Override

@@ -5,7 +5,7 @@ import java.awt.*;
 public class PokeCenter extends GameObject {
     
     private boolean collides, newCollides;
-    private int width, height;
+    private final int width, height;
     
     public PokeCenter(int x, int y, Handler handler, int height, int width) {
         super(ID.PokeCenter, x, y, handler);

@@ -11,5 +11,9 @@ public abstract class Move {
         this.hp = hp;
     }
     
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+    
     abstract void use(Pokemon source, Pokemon target);
 }

@@ -1,4 +1,6 @@
 package com.charlyffs.main;
+import javafx.application.Platform;
+
 import javax.print.attribute.HashAttributeSet;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -6,15 +8,12 @@ import java.awt.image.BufferedImage;
 
 public class Game extends Canvas implements Runnable {
     
-    //Graphics stuff.
-    private final int width = 1280, height = 720;
-    private BufferedImage levelArt, geometry;
-    private BufferedImageLoader loader;
-    private Camera camera;
+    private final BufferedImage levelArt;
+    private final Camera camera;
     
     //Technical stuff.
     private int red, green, blue;
-    private Handler handler;
+    private final Handler handler;
     private boolean running = false;
     
     public static Player player;
@@ -29,6 +28,9 @@ public class Game extends Canvas implements Runnable {
     Game() {
         DataBase.fillTable();
         DataBase.fillPokeDex();
+        //Graphics stuff.
+        int width = 1280;
+        int height = 720;
         new Window(width, height, "PokeClone", this);
         
         handler = new Handler();
@@ -36,9 +38,10 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(player);
         try {
             Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
-            Player.getPokemon().add(DataBase.getPokemon(0).clone());
             Player.getPokemon().add(DataBase.getPokemon(1).clone());
             Player.getPokemon().add(DataBase.getPokemon(2).clone());
+            Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+            Player.getPokemon().get(0).setCurrentHP(99999);
         } catch (Exception e) {
             System.out.println("Clone failed");
             e.printStackTrace();
@@ -47,14 +50,15 @@ public class Game extends Canvas implements Runnable {
         System.out.println(Player.getPokemon().get(0).toString());
         camera = new Camera(0, 0);
         this.addKeyListener(new KeyInput(handler));
-        
-        loader = new BufferedImageLoader();
-        
-        geometry = loader.loadImage("/Geo.png");
+    
+        BufferedImageLoader loader = new BufferedImageLoader();
+    
+        BufferedImage geometry = loader.loadImage("/Geo.png");
         levelArt = loader.loadImage("/Art.png");
         
         loadLevel(geometry);
-        handler.addObject(new Encounter(456, 356, handler));
+        handler.addObject(new Encounter(456, 356, 3, handler, false));
+        handler.addObject(new Encounter(456, 400, 3, handler, true));
     }
     
     /**
@@ -168,6 +172,8 @@ public class Game extends Canvas implements Runnable {
                 blue = (pixel) & 0xff;
                 if (red == 255) {
                     handler.addObject(new Block(ID.Block, x, y - 1, handler));
+                } else if (colorsEqual(100)) {
+                    
                 }
             }
         }

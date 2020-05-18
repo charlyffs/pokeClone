@@ -2,29 +2,21 @@ package com.charlyffs.main;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.util.concurrent.ExecutionException;
 
 public final class GameObserver extends Application {
     
     private static FXMLLoader loader;
-    
-    private static Game game;
     public static Fight fight;
     public static StoreController store;
     public static Bank bank;
-    
     private static Thread thread1;
     public static volatile boolean flag = false;
-    
     public static Stage stage;
     
     //TODO add:
@@ -35,12 +27,12 @@ public final class GameObserver extends Application {
     // gym.
     // sort out transitions
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         launch(args);
     }
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         GameObserver.stage = stage;
         //Open main menu
         try {
@@ -78,9 +70,8 @@ public final class GameObserver extends Application {
     
     //On closing main menu, this is called.
     public static void startGame() {
-        hideStage();
-        
-        game = new Game();
+    
+        Game game = new Game();
         thread1 = new Thread(game);
         thread1.setName("Game");
         thread1.setPriority(Thread.MAX_PRIORITY);
@@ -122,7 +113,7 @@ public final class GameObserver extends Application {
         
     }
     
-    static void startFight(Pokemon enemy) {
+    static void startFight(int type, boolean gym) {
         if (loader.getController() != fight) {
             loader = new FXMLLoader(GameObserver.class.getResource("Fight.fxml"));
             try {
@@ -135,8 +126,8 @@ public final class GameObserver extends Application {
             switchStage("Fight");
             System.out.println("Stage switched");
         }
-        showStage();
-        fight.startFight(enemy);
+        
+        fight.startFight(type, gym);
         thread1.suspend();
     }
     
@@ -147,12 +138,12 @@ public final class GameObserver extends Application {
     
     public static void showStage() {
         System.out.println("Show stage...");
-        Platform.runLater(() -> stage.toFront());
+//        Platform.runLater(() -> stage.toFront());
     }
     
     public static void hideStage() {
         System.out.println("Hide stage...");
-        Platform.runLater(() -> stage.toBack());
+//        Platform.runLater(() -> stage.toBack());
     }
     
     public static void stopT1() throws InterruptedException {

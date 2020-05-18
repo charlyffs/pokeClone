@@ -5,7 +5,7 @@ import java.awt.*;
 public class bankTrigger extends GameObject {
     
     private boolean collides, newCollides;
-    private int width, height;
+    private final int width, height;
     
     public bankTrigger(int x, int y, Handler handler, int height, int width) {
         super(ID.Bank, x, y, handler);

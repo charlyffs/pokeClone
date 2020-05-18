@@ -6,10 +6,13 @@ import java.util.Random;
 public class Encounter extends GameObject {
     
     private boolean collides = false, newCollides = false;
-    private final Random RNG = new Random();
+    private final int type;
+    private final boolean isGym;
     
-    public Encounter(int x, int y, Handler handler) {
+    public Encounter(int x, int y, int type, Handler handler, boolean isGym) {
         super(ID.Encounter, x, y, handler);
+        this.type = type;
+        this.isGym = isGym;
     }
     
     @Override
@@ -18,15 +21,12 @@ public class Encounter extends GameObject {
             if (gameObject.getId() == ID.Player) {
                 newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    if (RNG.nextInt(10) >= 1) {
-                        handler.setUp(false);
-                        handler.setDown(false);
-                        handler.setLeft(false);
-                        handler.setRight(false);
-                        System.out.println("Encounter.");
-                        int x = RNG.nextInt(DataBase.getPokeDex().size());
-                        GameObserver.startFight(DataBase.getPokemon(x));
-                    }
+                    handler.setUp(false);
+                    handler.setDown(false);
+                    handler.setLeft(false);
+                    handler.setRight(false);
+                    System.out.println("Encounter.");
+                    GameObserver.startFight(type, isGym);
                 }
                 collides = newCollides;
             }

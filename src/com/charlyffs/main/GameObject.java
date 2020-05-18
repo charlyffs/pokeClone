@@ -52,31 +52,12 @@ public abstract class GameObject {
         return y;
     }
     
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
+    
     public void setY(int y) {
         this.y = y;
     }
     
-    public int getVelX() {
-        return velX;
-    }
-    
-    public void setVelX(int velX) {
-        this.velX = velX;
-    }
-    
-    public int getVelY() {
-        return velY;
-    }
-    
-    public void setVelY(int velY) {
-        this.velY = velY;
-    }
-    
-    public Handler getHandler() {
-        return handler;
-    }
-    
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
 }

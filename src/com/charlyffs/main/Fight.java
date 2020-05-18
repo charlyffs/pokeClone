@@ -1,91 +1,95 @@
 package com.charlyffs.main;
+
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Fight {
     
-    public TextArea actionButtonsContainer, invBackground, pokemonBackground;
     public Pane pokemonHealthBar, enemyHealthBar;
+    public ImageView Pokemon1Image, Pokemon2Image, Pokemon3Image;
+    public ImageView playerImageView, enemyImageView,item1Image, item2Image, item3Image;
+    public TextArea actionButtonsContainer, invBackground, pokemonBackground;
     public Label pokemonName, pokemonLevel, enemyName, enemyLevel;
-    
-    private boolean fightBtnState, invBtnState, pokemonBtnState;
+    public Label Pokemon1DataLabel, Pokemon2DataLabel, Pokemon3DataLabel;
     public Button invItem1Btn, invItem2Btn, invItem3Btn, invPrevPageBtn, invNextPageBtn;
     public Button pokemon1Button,pokemon2Button ,pokemon3Button ,pokemonPrevPageBtn, pokemonNextPageBtn;
-    public Label Pokemon1DataLabel, Pokemon2DataLabel, Pokemon3DataLabel;
-    public ImageView Pokemon1Image, Pokemon2Image, Pokemon3Image;
     public Button action1Button, action2Button, action3Button, action4Button;
     
-    public ImageView playerImageView, enemyImageView,item1Image, item2Image, item3Image;
-    private ArrayList<Pokemon> pokemonInventory;
-    private Pokemon playerPokemon, enemyPokemon;
+    private boolean fightBtnState, invBtnState, pokemonBtnState;
+    private ArrayList<Pokemon> pokemonInventory, enemyPokemonList;
     private ArrayList<Item> inventory;
+    private Pokemon playerPokemon, enemyPokemon;
     private int pokemonIndex;
+    private final Random RNG = new Random();
     
-    void startFight(Pokemon enemy) {
-        System.out.println("Starting fight...");
-        //Set all data for current fight.
+    void startFight(int type, boolean gym) {
+        pokemonInventory = Player.getPokemon();
+        enemyPokemonList = new ArrayList<>();
+        
+        //If gym, get 7 random pokemon, else, get 1 pokemon
+        for (int i = 0; i < (gym ? 7 : 1); i++) {
+            enemyPokemonList.add(DataBase.getPokeDex().get(RNG.nextInt(type)).clone());
+        }
+        enemyPokemon = enemyPokemonList.get(0);
+        
+        getLivingPokemon();
+        
+        inventory = Player.getInventory();
+    
+        //Fixes the UI because all menus start visible
+        fightBtnState = true;
+        invBtnState = false;
+        pokemonBtnState = false;
+        fightButtonClick();
+        invBtnState = true;
+        bagButtonClicked();
+        pokemonBtnState = true;
+        pokemonButtonClick();
+        
+        setEnemyVisuals();
+        
+        setPokemonVisuals();
+        updateBars();
+        printData();
+    }
+    
+    private void setEnemyVisuals() {
         Platform.runLater(() -> {
-            this.pokemonInventory = Player.getPokemon();
-            inventory = Player.getInventory();
-            pokemonIndex = 0;
-            this.playerPokemon = pokemonInventory.get(0);
-            pokemonInventory.remove(0);
-            
-            this.enemyPokemon = enemy;
-            enemyImageView.setImage(new Image(enemy.getURL()));
+            enemyImageView.setImage(new Image(enemyPokemon.getURL()));
             enemyLevel.setText("Level: " + enemyPokemon.getLevel());
             enemyName.setText(enemyPokemon.getName());
-        
-            setPokemonVisuals();
-            updateBars();
-            printData();
-        
-            fightBtnState = true;
-            invBtnState = false;
-            pokemonBtnState = false;
-            fightButtonClick();
-            invBtnState = true;
-            bagButtonClicked();
-            pokemonBtnState = true;
-            pokemonButtonClick();
         });
     }
     
     private void setPokemonVisuals() {
-        playerImageView.setImage(new Image(playerPokemon.getURL()));
-        pokemonLevel.setText("Level: " + playerPokemon.getLevel());
-        pokemonName.setText(playerPokemon.getName());
+        Platform.runLater(() -> {
+            playerImageView.setImage(new Image(playerPokemon.getURL()));
+            pokemonLevel.setText("Level: " + playerPokemon.getLevel());
+            pokemonName.setText(playerPokemon.getName());
     
-        int i = 0;
+            int i = 0;
+            setButtonData(action1Button, i++);
+            setButtonData(action2Button, i++);
+            setButtonData(action3Button, i++);
+            setButtonData(action4Button, i);
+        });
+    }
+    
+    private void setButtonData(Button button, int index) {
         try {
-            action1Button.setText(playerPokemon.getMoves().get(i).name);
-            i++;
-            action2Button.setText(playerPokemon.getMoves().get(i).name);
-            i++;
-            action3Button.setText(playerPokemon.getMoves().get(i).name);
-            i++;
-            action4Button.setText(playerPokemon.getMoves().get(i).name);
+            button.setText(playerPokemon.getMoves().get(index).name);
         } catch (Exception e) {
-            switch (i) {
-                case 0:
-                    action1Button.setDisable(true);
-                    action1Button.setText("");
-                case 1:
-                    action2Button.setDisable(true);
-                    action2Button.setText("");
-                case 2:
-                    action3Button.setDisable(true);
-                    action3Button.setText("");
-                case 3:
-                    action4Button.setDisable(true);
-                    action4Button.setText("");
-            }
+            button.setDisable(true);
+            button.setText("");
         }
     }
     
@@ -99,7 +103,6 @@ public class Fight {
             alert.setHeaderText("LOSE");
         }
         alert.showAndWait();
-        pokemonInventory.add(pokemonIndex, playerPokemon);
         enemyPokemon.reset();
         GameObserver.hideStage();
         GameObserver.backToGame();
@@ -239,41 +242,59 @@ public class Fight {
     
     private void changeTurn() {
         if (enemyPokemon.getCurrentHP() < 1) {
-            quitFight();
+            enemyDead();
+            setEnemyVisuals();
+            updateBars();
         }
         Random RNG = new Random();
         enemyPokemon.getMoves().get(RNG.nextInt(enemyPokemon.getMoves().size())).use(enemyPokemon, playerPokemon);
         updateBars();
-        if (playerPokemon.getCurrentHP() < 1) {
-            quitFight();
-        }
+        if (playerPokemon.getCurrentHP() < 1)
+            getLivingPokemon();
         printData();
     }
     
+    private void getLivingPokemon() {
+        if (!(playerPokemon == null)) {
+            pokemonInventory.add(pokemonIndex, playerPokemon);
+        }
+        for (Pokemon pokemon : pokemonInventory) {
+            if (pokemon.getCurrentHP() > 0) {
+                pokemonIndex = pokemonInventory.indexOf(pokemon);
+                playerPokemon = pokemon;
+                setPokemonVisuals();
+                updateBars();
+                break;
+            }
+        }
+        pokemonInventory.remove(pokemonIndex);
+        if (playerPokemon.getCurrentHP() <= 0) {
+            quitFight();
+        }
+    }
+    
     private void updateBars() {
-        pokemonHealthBar.setPrefWidth((double) playerPokemon.getCurrentHP() / playerPokemon.getHp() * 156.0);
-        enemyHealthBar.setPrefWidth((double) enemyPokemon.getCurrentHP() / enemyPokemon.getHp() * 156.0);
+        Platform.runLater(() -> {
+            pokemonHealthBar.setPrefWidth((double) playerPokemon.getCurrentHP() / playerPokemon.getHp() * 156.0);
+            enemyHealthBar.setPrefWidth((double) enemyPokemon.getCurrentHP() / enemyPokemon.getHp() * 156.0);
+        });
     }
     
     public void useInvItem1() {
-        if (inventory.get(invPage).use(playerPokemon, enemyPokemon)) {
-            inventory.remove(invPage);
-            updateInventoryButtons();
-            changeTurn();
-        }
+        useInvItem(invPage);
     }
     
     public void useInvItem2() {
-        if (inventory.get(invPage + 1).use(playerPokemon, enemyPokemon)) {
-            inventory.remove(invPage + 1);
-            updateInventoryButtons();
-            changeTurn();
-        }
+        useInvItem(invPage + 1);
     }
     
     public void useInvItem3() {
-        if (inventory.get(invPage + 2).use(playerPokemon, enemyPokemon)) {
-            inventory.remove(invPage + 2);
+        useInvItem(invPage + 2);
+    }
+    
+    private void useInvItem(int index) {
+        if (inventory.get(index).use(playerPokemon, enemyPokemon)) {
+            inventory.remove(index);
             updateInventoryButtons();
             changeTurn();
         }
@@ -290,18 +311,19 @@ public class Fight {
     }
     
     public void pokemon1ButtonClick() {
-        Pokemon newPokemon = pokemonInventory.get(pokemonPage);
-        pokemonInventory.add(pokemonIndex, playerPokemon);
-        pokemonIndex = pokemonInventory.indexOf(newPokemon);
-        pokemonInventory.remove(pokemonIndex);
-        playerPokemon = newPokemon;
-        setPokemonVisuals();
-        changeTurn();
-        updatePokemonInv();
+        changePokemon(pokemonPage);
     }
     
     public void pokemon2ButtonClick() {
-        Pokemon newPokemon = pokemonInventory.get(pokemonPage + 1);
+        changePokemon(pokemonPage + 1);
+    }
+    
+    public void pokemon3ButtonClick() {
+        changePokemon(pokemonPage + 2);
+    }
+    
+    private void changePokemon(int index) {
+        Pokemon newPokemon = pokemonInventory.get(index);
         pokemonInventory.add(pokemonIndex, playerPokemon);
         pokemonIndex = pokemonInventory.indexOf(newPokemon);
         pokemonInventory.remove(pokemonIndex);
@@ -311,15 +333,14 @@ public class Fight {
         updatePokemonInv();
     }
     
-    public void pokemon3ButtonClick() {
-        Pokemon newPokemon = pokemonInventory.get(pokemonPage + 2);
-        pokemonInventory.add(pokemonIndex, playerPokemon);
-        pokemonIndex = pokemonInventory.indexOf(newPokemon);
-        pokemonInventory.remove(pokemonIndex);
-        playerPokemon = newPokemon;
-        setPokemonVisuals();
-        changeTurn();
-        updatePokemonInv();
+    private void enemyDead() {
+        enemyPokemonList.remove(0);
+        try {
+            enemyPokemon = enemyPokemonList.get(0);
+            
+        } catch (Exception e) {
+            quitFight();
+        }
     }
     
     public void pokemonPrevPageClick() {
@@ -333,50 +354,28 @@ public class Fight {
     }
     
     private void updatePokemonInv() {
-        int i = 0;
-        Pokemon holder;
         pokemonPrevPageBtn.setDisable(pokemonPage == 0);
+        setPokemonInvStuff(pokemon1Button, Pokemon1Image, Pokemon1DataLabel, pokemonPage);
+        setPokemonInvStuff(pokemon2Button, Pokemon2Image, Pokemon2DataLabel, pokemonPage + 1);
+        setPokemonInvStuff(pokemon3Button, Pokemon3Image, Pokemon3DataLabel, pokemonPage + 2);
+    }
+    
+    private void setPokemonInvStuff(Button button, ImageView imageView, Label label, int index) {
+        Pokemon holder;
         try {
-            holder = pokemonInventory.get(pokemonPage);
-            Pokemon1DataLabel.setText(holder.getName() + ". Level: " + holder.getLevel() + ".");
-            Pokemon1Image.setImage(new Image(holder.getURL()));
-            pokemon1Button.setDisable(false);
-            pokemon1Button.setVisible(true);
-            Pokemon1DataLabel.setVisible(true);
-            Pokemon1Image.setVisible(true);
-            i++;
-            holder = pokemonInventory.get(pokemonPage + 1);
-            Pokemon2DataLabel.setText(holder.getName() + ". Level: " + holder.getLevel() + ".");
-            Pokemon2Image.setImage(new Image(holder.getURL()));
-            pokemon2Button.setDisable(false);
-            pokemon2Button.setVisible(true);
-            Pokemon2DataLabel.setVisible(true);
-            Pokemon2Image.setVisible(true);
-            i++;
-            holder = pokemonInventory.get(pokemonPage + 2);
-            Pokemon3DataLabel.setText(holder.getName() + ". Level: " + holder.getLevel() + ".");
-            Pokemon3Image.setImage(new Image(holder.getURL()));
-            pokemon3Button.setDisable(false);
-            pokemon3Button.setVisible(true);
+            holder = pokemonInventory.get(index);
+            label.setText(holder.getName() + ". Level: " + holder.getLevel() + ".");
+            imageView.setImage(new Image(holder.getURL()));
+            imageView.setVisible(true);
+            button.setVisible(true);
+            label.setVisible(true);
             pokemonNextPageBtn.setDisable(false);
-            Pokemon3DataLabel.setVisible(true);
-            Pokemon3Image.setVisible(true);
         } catch (Exception e) {
+            button.setVisible(false);
+            label.setVisible(false);
+            imageView.setVisible(false);
             pokemonNextPageBtn.setDisable(true);
-            switch (i) {
-                case 0:
-                    pokemon1Button.setVisible(false);
-                    Pokemon1DataLabel.setVisible(false);
-                    Pokemon1Image.setVisible(false);
-                case 1:
-                    pokemon2Button.setVisible(false);
-                    Pokemon2DataLabel.setVisible(false);
-                    Pokemon2Image.setVisible(false);
-                case 2:
-                    pokemon3Button.setVisible(false);
-                    Pokemon3DataLabel.setVisible(false);
-                    Pokemon3Image.setVisible(false);
-            }
         }
     }
+    
 }

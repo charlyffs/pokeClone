@@ -1,13 +1,11 @@
 package com.charlyffs.main;
 
-import javafx.application.Platform;
-
 import java.awt.*;
 
 public class Store extends GameObject {
     
     private boolean collides, newCollides;
-    private int width, height;
+    private final int width, height;
     
     public Store(int x, int y, Handler handler, int height, int width) {
         super(ID.Store, x, y, handler);

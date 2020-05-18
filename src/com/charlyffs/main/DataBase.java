@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class DataBase {
     
-    private static double[][] modifier = new double[17][17];
-    private static ArrayList<Pokemon> pokeDex = new ArrayList<>();
+    private static final double[][] modifier = new double[17][17];
+    private static final ArrayList<Pokemon> pokeDex = new ArrayList<>();
     
     public static void fillTable() {
         for (int i = 0; i < 17; i++) {
@@ -159,7 +159,4 @@ public class DataBase {
         return pokeDex;
     }
     
-    public static int getIndex(Pokemon pokemon) {
-        return pokeDex.indexOf(pokemon);
-    }
 }

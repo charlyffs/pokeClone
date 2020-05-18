@@ -8,10 +8,10 @@ public class Player extends GameObject {
     private static ArrayList<Pokemon> pokemon;
     private static ArrayList<Item> inventory;
     private static ArrayList<Pokemon> bank;
-    private String name;
-    private int gender; //0 = male, 1 = female
-    private BufferedImageLoader loader = new BufferedImageLoader();
-    private String path;
+    private final String name;
+    private final int gender; //0 = male, 1 = female
+    private final BufferedImageLoader loader = new BufferedImageLoader();
+    private final String path;
     public static int balance;
     
     Player(ID id, int x, int y, Handler handler, int gender, String name) {

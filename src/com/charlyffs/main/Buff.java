@@ -2,7 +2,7 @@ package com.charlyffs.main;
 
 class Buff extends Move{
     
-    private int subType;
+    private final int subType;
     
     Buff(String name, int hp, int subType) {
         super(name, hp);
@@ -14,7 +14,7 @@ class Buff extends Move{
         if (subType == 1) {
             source.heal(hp);
         } else {
-            //Lower target's damage
+            target.damage(10);
         }
     }
 }

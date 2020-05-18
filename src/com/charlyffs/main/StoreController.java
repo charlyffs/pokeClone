@@ -1,6 +1,5 @@
 package com.charlyffs.main;
 
-import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
@@ -34,7 +33,7 @@ public class StoreController {
         alert.showAndWait();
     }
     
-    public void exitButtonClicked(ActionEvent actionEvent) {
+    public void exitButtonClicked() {
     
     }
 }
