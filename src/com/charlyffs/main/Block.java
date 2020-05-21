@@ -3,8 +3,8 @@ import java.awt.*;
 
 public class Block extends GameObject {
     
-    Block(ID id, int x, int y, Handler handler) {
-        super(id, x, y, handler);
+    Block(int x, int y) {
+        super(ID.Block, x, y);
     }
     
     @Override

@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public final class GameObserver extends Application {
     
@@ -16,7 +17,6 @@ public final class GameObserver extends Application {
     public static StoreController store;
     public static Bank bank;
     private static Thread thread1;
-    public static volatile boolean flag = false;
     public static Stage stage;
     
     //TODO add:
@@ -31,6 +31,9 @@ public final class GameObserver extends Application {
     @Override
     public void start(Stage stage) {
         GameObserver.stage = stage;
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setResizable(false);
+        once = true;
         //Open main menu
         try {
             loader = new FXMLLoader(GameObserver.class.getResource("StartupWindow.fxml"));
@@ -39,7 +42,7 @@ public final class GameObserver extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        showStage();
+        stage.show();
     }
     
     private static boolean once = false;
@@ -52,22 +55,14 @@ public final class GameObserver extends Application {
                 Parent root = loader.getRoot();
                 stage.setScene(new Scene(root));
                 stage.setTitle(title);
-                if (!once) {
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.setResizable(false);
-                    once = true;
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            stage.show();
         });
-        
     }
     
     //On closing main menu, this is called.
     public static void startGame() {
-    
         Game game = new Game();
         thread1 = new Thread(game);
         thread1.setName("Game");
@@ -135,12 +130,13 @@ public final class GameObserver extends Application {
     
     public static void showStage() {
         System.out.println("Show stage...");
-//        Platform.runLater(() -> stage.toFront());
+        Platform.runLater(() -> stage.show());
     }
     
     public static void hideStage() {
         System.out.println("Hide stage...");
-//        Platform.runLater(() -> stage.toBack());
+        //fixme no jala esta ostia me voy a dar un tiro
+//        Platform.runLater(() -> stage.hide());
     }
     
     public static void stopT1() throws InterruptedException {

@@ -7,8 +7,8 @@ public class bankTrigger extends GameObject {
     private boolean collides, newCollides;
     private final int width, height;
     
-    public bankTrigger(int x, int y, Handler handler, int height, int width) {
-        super(ID.Bank, x, y, handler);
+    public bankTrigger(int x, int y, int height, int width) {
+        super(ID.Bank, x, y);
         this.width = width;
         this.height = height;
     }

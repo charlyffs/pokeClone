@@ -1,5 +1,4 @@
 package com.charlyffs.main;
-import javax.naming.Name;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -13,16 +12,17 @@ public class Player extends GameObject {
     private final BufferedImageLoader loader = new BufferedImageLoader();
     private final String path;
     public static int balance;
+    public static int immunity;
     
-    Player(ID id, int x, int y, Handler handler, int gender, String name) {
-        super(id, x, y, handler);
+    Player(ID id, int x, int y, int gender, String name) {
+        super(id, x, y);
         this.gender = gender;
         this.name = name;
         pokemon = new ArrayList<>();
         inventory = new ArrayList<>();
         bank = new ArrayList<>();
         balance = 100;
-    
+        immunity = 0;
         path = gender == 0 ? "/male.png" : "/female.png";
     }
     
@@ -30,20 +30,34 @@ public class Player extends GameObject {
      * Read movement input and collision data. Transform player accordingly.
      */
     public void tick() {
+        
         x += velX;
         y += velY;
         collision();
         if (handler.isUp()) velY = -5;
         else if(!handler.isDown()) velY = 0;
-    
+
         if (handler.isDown()) velY = 5;
         else if(!handler.isUp()) velY = 0;
-    
+
         if (handler.isRight()) velX = 5;
         else if(!handler.isLeft()) velX = 0;
-    
+
         if (handler.isLeft()) velX = -5;
         else if(!handler.isRight()) velX = 0;
+    
+//        if (handler.isUp()) {
+//            velY -= 5;
+//        }
+//        if (handler.isDown()) {
+//            velY += 5;
+//        }
+//        if (handler.isRight()) {
+//            velX += 5;
+//        }
+//        if (handler.isLeft()) {
+//            velX -= 5;
+//        }
         
     }
     

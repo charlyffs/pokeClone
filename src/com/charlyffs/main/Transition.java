@@ -4,11 +4,11 @@ import java.awt.*;
 
 public class Transition extends GameObject {
     
-    private final int targetX, targetY;
-    private final int width, height;
+    private int targetX, targetY;
+    private int width, height;
     
-    public Transition(int x, int y, Handler handler, int targetX, int targetY, int height, int width) {
-        super(ID.Transition, x, y, handler);
+    public Transition(int x, int y, int targetX, int targetY, int height, int width) {
+        super(ID.Transition, x, y);
         this.targetX = targetX;
         this.targetY = targetY;
         this.width = width;
@@ -26,9 +26,16 @@ public class Transition extends GameObject {
                 if (new Rectangle(x, y, width * 32, height * 32).intersects(gameObject.getBounds())) {
                     gameObject.setX(targetX);
                     gameObject.setY(targetY);
+                    Game.storeExit.setTarget(x + 16, y - 48);
+                    Game.pokecenterExit.setTarget(x - 64, y + 16);
                 }
             }
         }
+    }
+    
+    public void setTarget(int x, int y) {
+        targetX = x;
+        targetY = y;
     }
     
     @Override

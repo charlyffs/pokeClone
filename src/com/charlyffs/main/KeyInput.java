@@ -12,8 +12,6 @@ public class KeyInput extends KeyAdapter {
     
     /**
      * Is player trying to go up, down, left, or right?
-     *
-     * @param event Key being pressed.
      */
     
     boolean shown = false;
@@ -26,12 +24,7 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_S) handler.setDown(true);
                 if (key == KeyEvent.VK_D) handler.setRight(true);
                 if (key == KeyEvent.VK_SPACE) {
-                    if (shown) {
-                        GameObserver.hideStage();
-                    } else {
-                        GameObserver.showStage();
-                    }
-                    shown = !shown;
+                
                 }
             }
         }

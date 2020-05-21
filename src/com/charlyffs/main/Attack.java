@@ -12,4 +12,5 @@ class Attack extends Move{
         target.damage(amount);
         System.out.println(source.getName() + " used " + name + " on " + target.getName() + " for a total damage of: " + amount);
     }
+    
 }

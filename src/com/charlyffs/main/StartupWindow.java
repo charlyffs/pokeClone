@@ -35,9 +35,6 @@ public class StartupWindow {
         Game.starterPokemon = bulbasaurRadio.isSelected() ? 0 : charmanderRadio.isSelected() ? 1 : squirtleRadio.isSelected() ? 2 : 0;
         Game.playerName = nameField.getText();
         Game.playerGender = gender;
-        GameObserver.flag = true;
-    
-//        GameObserver.stage.hide();
         GameObserver.startGame();
     }
     

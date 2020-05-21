@@ -13,7 +13,7 @@ public class Game extends Canvas implements Runnable {
     
     //Technical stuff.
     private int red, green, blue;
-    private final Handler handler;
+    public static final Handler handler = new Handler();
     private boolean running = false;
     
     public static Player player;
@@ -32,18 +32,17 @@ public class Game extends Canvas implements Runnable {
         int height = 720;
         new Window(width, height, "PokeClone", this);
         
-        handler = new Handler();
-        player = new Player(ID.Player, 400, 200, handler, playerGender, playerName);
+        player = new Player(ID.Player, 400, 200, playerGender, playerName);
         handler.addObject(player);
         
         Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
         Player.getPokemon().add(DataBase.getPokemon(1).clone());
         Player.getPokemon().add(DataBase.getPokemon(2).clone());
-        Player.getInventory().add(new Potion("Potion", 50));
-        Player.getInventory().add(new Potion("Potion", 50));
-        Player.getInventory().add(new Potion("Potion", 50));
-        //Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-        //Player.getPokemon().get(0).setCurrentHP(99999);
+        Player.getInventory().add(new Potion("Healing potion", 50));
+        Player.getInventory().add(new Potion("Healing potion", 50));
+        Player.getInventory().add(new Potion("Healing potion", 50));
+//        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+//        Player.getPokemon().get(0).setCurrentHP(99999);
         
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
@@ -56,8 +55,8 @@ public class Game extends Canvas implements Runnable {
         levelArt = loader.loadImage("/Art.png");
         
         loadLevel(geometry);
-        handler.addObject(new Encounter(456, 356, 3, handler, false));
-        handler.addObject(new Encounter(456, 400, 3, handler, true));
+        handler.addObject(new Encounter(456, 356, 3, false));
+        handler.addObject(new Encounter(456, 400, 3, true));
     }
     
     /**
@@ -152,6 +151,10 @@ public class Game extends Canvas implements Runnable {
         bs.show();
     }
     
+    public static Transition
+            storeExit = new Transition(192, 992, 0, 0, 1, 2),
+            pokecenterExit = new Transition(608, 960, 0, 0, 1, 2);
+    
     /**
      * Reads the geometry data from the provided image and creates the corresponding blocks for collision with the user.
      * In the geometry image, red is for borders/obstacles, green is for transition areas, and blue is for encounters.
@@ -170,24 +173,32 @@ public class Game extends Canvas implements Runnable {
                 green = (pixel >> 8) & 0xff;
                 blue = (pixel) & 0xff;
                 if (red == 255) {
-                    handler.addObject(new Block(ID.Block, x, y - 1, handler));
+                    handler.addObject(new Block(x, y - 1));
                 } else if (colorsEqual(100)) {
-                    
+                    handler.addObject(new Encounter(x, y, 3, false));
+                } else if (colorsEqual(131)) {
+                    handler.addObject(new Transition(x, y, 216, 949, 1,1));
+                } else if (colorsEqual(141)) {
+                    handler.addObject(new Transition(x, y, 631, 915, 1,1));
                 }
             }
         }
         //Transitions between areas
-        handler.addObject(new Transition(383, 0, handler, 1104, 560, 2,2));
-        handler.addObject(new Transition(1056, 0, handler, 397, 100, 2,4));
-        handler.addObject(new Transition(1248, 224, handler, 624, 905, 1,1));
-        handler.addObject(new Transition(608, 960, handler, 1247, 258, 1,2));
-        handler.addObject(new Transition(992, 543, handler, 214, 947, 1,1));
-        handler.addObject(new Transition(192, 992, handler, 1028, 547, 1,2));
-        handler.addObject(new PokeCenter(160, 864, handler, 1, 2));
-        handler.addObject(new Store(608, 832, handler, 1, 1));
+        handler.addObject(new Transition(384, 0, 1296, 1194, 1,2));
+        handler.addObject(new Transition(1280, 1248, 402, 34, 1,2));
+        handler.addObject(new Transition(1216, 672, 1121, 516, 1,4));
+        handler.addObject(new Transition(992, 576, 1265, 706, 1,6));
+        handler.addObject(new Transition(801, 320, 2164, 290, 2,1));
+        handler.addObject(new Transition(2208, 321, 835, 336, 1,1));
+    
+        handler.addObject(storeExit);
+        handler.addObject(pokecenterExit);
+        
+        handler.addObject(new PokeCenter(160, 864, 1, 2));
+        handler.addObject(new Store(608, 832, 1, 1));
         //320
         //816
-        handler.addObject(new bankTrigger(514, 513, handler, 1, 1));
+        handler.addObject(new bankTrigger(514, 513, 1, 1));
         
     }
     

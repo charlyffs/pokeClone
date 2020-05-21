@@ -13,11 +13,11 @@ public abstract class GameObject {
     
     Handler handler;
     
-    GameObject(ID id, int x, int y, Handler handler) {
+    GameObject(ID id, int x, int y) {
         this.id = id;
         this.x = x;
         this.y = y;
-        this.handler = handler;
+        handler = Game.handler;
     }
     
     ID getId() {

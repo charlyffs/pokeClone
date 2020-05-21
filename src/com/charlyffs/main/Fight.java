@@ -29,8 +29,10 @@ public class Fight {
     private Pokemon playerPokemon, enemyPokemon;
     private int pokemonIndex;
     private final Random RNG = new Random();
+    public static boolean flag = false;
     
     void startFight(int type, boolean gym) {
+        
         pokemonInventory = Player.getPokemon();
         enemyPokemonList = new ArrayList<>();
         
@@ -95,6 +97,7 @@ public class Fight {
     
     public void quitFight() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        pokemonInventory.add(pokemonIndex, playerPokemon);
          if (enemyPokemon.getCurrentHP() < 1) {
             alert.setHeaderText("WIN");
             Player.setBalance(Player.getBalance() + 15);
@@ -108,7 +111,6 @@ public class Fight {
         }
         alert.showAndWait();
         enemyPokemon.reset();
-        GameObserver.hideStage();
         GameObserver.backToGame();
     }
     
@@ -243,13 +245,14 @@ public class Fight {
         Random RNG = new Random();
         enemyPokemon.getMoves().get(RNG.nextInt(enemyPokemon.getMoves().size())).use(enemyPokemon, playerPokemon);
         updateBars();
-        if (playerPokemon.getCurrentHP() < 1)
+        if (playerPokemon.getCurrentHP() < 1){
             getLivingPokemon();
+        }
         printData();
     }
     
     private void getLivingPokemon() {
-        if (!(playerPokemon == null)) {
+        if (playerPokemon != null) {
             pokemonInventory.add(pokemonIndex, playerPokemon);
         }
         for (Pokemon pokemon : pokemonInventory) {
@@ -266,7 +269,6 @@ public class Fight {
         } else {
             pokemonInventory.remove(pokemonIndex);
             playerPokemon.setParticipated(true);
-            changeTurn();
         }
     }
     
@@ -337,7 +339,6 @@ public class Fight {
         try {
             enemyPokemon = enemyPokemonList.get(0);
         } catch (Exception e) {
-            pokemonInventory.add(pokemonIndex, playerPokemon);
             quitFight();
         }
     }

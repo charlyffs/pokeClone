@@ -8,8 +8,8 @@ public class Encounter extends GameObject {
     private final int type;
     private final boolean isGym;
     
-    public Encounter(int x, int y, int type, Handler handler, boolean isGym) {
-        super(ID.Encounter, x, y, handler);
+    public Encounter(int x, int y, int type, boolean isGym) {
+        super(ID.Encounter, x, y);
         this.type = type;
         this.isGym = isGym;
     }
@@ -20,12 +20,17 @@ public class Encounter extends GameObject {
             if (gameObject.getId() == ID.Player) {
                 newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    handler.setUp(false);
-                    handler.setDown(false);
-                    handler.setLeft(false);
-                    handler.setRight(false);
-                    System.out.println("Encounter.");
-                    GameObserver.startFight(type, isGym);
+                    if (Player.immunity == 0) {
+                        handler.setUp(false);
+                        handler.setDown(false);
+                        handler.setLeft(false);
+                        handler.setRight(false);
+                        System.out.println("Encounter.");
+                        Player.immunity += 20;
+                        GameObserver.startFight(type, isGym);
+                    } else {
+                        Player.immunity -= 1;
+                    }
                 }
                 collides = newCollides;
             }

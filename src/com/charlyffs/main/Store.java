@@ -7,8 +7,8 @@ public class Store extends GameObject {
     private boolean collides, newCollides;
     private final int width, height;
     
-    public Store(int x, int y, Handler handler, int height, int width) {
-        super(ID.Store, x, y, handler);
+    public Store(int x, int y, int height, int width) {
+        super(ID.Store, x, y);
         this.width = width;
         this.height = height;
     }
