@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public final class GameObserver extends Application {
+public class GameObserver extends Application {
     
     private static FXMLLoader loader;
     public static Fight fight;

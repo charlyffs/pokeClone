@@ -27,5 +27,5 @@ hs_err_pid*
 
 .idea
 *.iml
-/out/
-/res/Raw/
+/out
+/res/Raw
