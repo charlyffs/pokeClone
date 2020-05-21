@@ -177,28 +177,43 @@ public class Game extends Canvas implements Runnable {
                 } else if (colorsEqual(100)) {
                     handler.addObject(new Encounter(x, y, 3, false));
                 } else if (colorsEqual(131)) {
-                    handler.addObject(new Transition(x, y, 216, 949, 1,1));
+                    handler.addObject(new Transition(x, y, 216, 930, 1,1));
                 } else if (colorsEqual(141)) {
-                    handler.addObject(new Transition(x, y, 631, 915, 1,1));
+                    handler.addObject(new Transition(x, y, 631, 900, 1,1));
                 }
             }
         }
-        //Transitions between areas
+        
+        //Transitions
+        //To and from areas
         handler.addObject(new Transition(384, 0, 1296, 1194, 1,2));
         handler.addObject(new Transition(1280, 1248, 402, 34, 1,2));
         handler.addObject(new Transition(1216, 672, 1121, 516, 1,4));
         handler.addObject(new Transition(992, 576, 1265, 706, 1,6));
         handler.addObject(new Transition(801, 320, 2164, 290, 2,1));
         handler.addObject(new Transition(2208, 321, 835, 336, 1,1));
+        handler.addObject(new Transition(1056, 0, 2550, 1200, 1, 4));
+        handler.addObject(new Transition(640, 1344, 1734, 1040, 2, 1));
+        handler.addObject(new Transition(2624, 1152, 1102, 45, 4, 1));
+        handler.addObject(new Transition(1696, 1024, 580, 1353, 2, 1));
     
+        //To and from gyms.
+        handler.addObject(new Transition(192, 1568, 2805, 490, 1, 1));
+        handler.addObject(new Transition(2784, 544, 229, 1571, 1, 2));
+    
+        handler.addObject(new Transition(1856, 576, 2450, 490, 1, 1));
+        handler.addObject(new Transition(2432, 544, 1896, 563, 1, 2));
+        
+        handler.addObject(new Transition(2176, 928, 2788, 195, 1, 1));
+        handler.addObject(new Transition(2848, 224, 2179, 964, 1, 2));
+        handler.addObject(new Transition(2688, 224, 2179, 964, 1, 2));
+        
         handler.addObject(storeExit);
         handler.addObject(pokecenterExit);
         
         handler.addObject(new PokeCenter(160, 864, 1, 2));
         handler.addObject(new Store(608, 832, 1, 1));
-        //320
-        //816
-        handler.addObject(new bankTrigger(514, 513, 1, 1));
+        handler.addObject(new bankTrigger(320, 800, 1, 1));
         
     }
     

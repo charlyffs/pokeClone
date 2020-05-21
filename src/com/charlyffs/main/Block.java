@@ -18,4 +18,5 @@ public class Block extends GameObject {
         g.setColor(Color.green);
         g.drawRect(getX(), getY(), 32 , 32);
     }
+    
 }

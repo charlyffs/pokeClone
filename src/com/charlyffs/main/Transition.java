@@ -26,8 +26,8 @@ public class Transition extends GameObject {
                 if (new Rectangle(x, y, width * 32, height * 32).intersects(gameObject.getBounds())) {
                     gameObject.setX(targetX);
                     gameObject.setY(targetY);
-                    Game.storeExit.setTarget(x + 16, y - 48);
-                    Game.pokecenterExit.setTarget(x - 64, y + 16);
+                    Game.storeExit.setTarget(x + 33, y - 16);
+                    Game.pokecenterExit.setTarget(x + 33, y - 17);
                 }
             }
         }

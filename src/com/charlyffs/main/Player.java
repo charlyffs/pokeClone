@@ -86,6 +86,10 @@ public class Player extends GameObject {
         }
     }
     
+    public Rectangle getBounds() {
+        return new Rectangle(x, y + 16, 32, 32);
+    }
+    
     /**
      * Draw player to the screen
      * @param g Graphics data
