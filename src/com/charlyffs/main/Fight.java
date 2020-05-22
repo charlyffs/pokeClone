@@ -111,7 +111,7 @@ public class Fight {
              if (isGym) {
                  Game.medals += 1;
                  if (Game.medals == 3) {
-                     alert.setHeaderText("CONGLATURATION YU WIN");
+                     alert.setHeaderText("CONGLATURATION YOU ARE WINNER");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
                      // fixme This is a meme, change to System.exit before shipping.
