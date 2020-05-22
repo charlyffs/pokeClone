@@ -19,11 +19,6 @@ public class GameObserver extends Application {
     private static Thread thread1;
     public static Stage stage;
     
-    //TODO add:
-    // pokemon bank map
-    // gym.
-    // sort out transitions
-    
     public static void main(String[] args) {
         launch(args);
     }
@@ -33,7 +28,6 @@ public class GameObserver extends Application {
         GameObserver.stage = stage;
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
-        once = true;
         //Open main menu
         try {
             loader = new FXMLLoader(GameObserver.class.getResource("StartupWindow.fxml"));
@@ -44,8 +38,6 @@ public class GameObserver extends Application {
         }
         stage.show();
     }
-    
-    private static boolean once = false;
     
     //Swaps between fight and store UI
     public static void switchStage(String title) {

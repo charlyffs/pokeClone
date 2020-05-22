@@ -1,7 +1,5 @@
 package com.charlyffs.main;
-import javafx.application.Platform;
 
-import javax.print.attribute.HashAttributeSet;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -20,6 +18,8 @@ public class Game extends Canvas implements Runnable {
     public static String playerName;
     public static int playerGender;
     public static int starterPokemon;
+    
+    public static int medals;
     
     /**
      * Creates the new JFrame, puts the game instance inside of it, instantiates the handler, camera and level.
@@ -41,8 +41,8 @@ public class Game extends Canvas implements Runnable {
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
-//        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-//        Player.getPokemon().get(0).setCurrentHP(99999);
+        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+        Player.getPokemon().get(0).setCurrentHP(99999);
         
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
@@ -55,8 +55,7 @@ public class Game extends Canvas implements Runnable {
         levelArt = loader.loadImage("/Art.png");
         
         loadLevel(geometry);
-        handler.addObject(new Encounter(456, 356, 3, false));
-        handler.addObject(new Encounter(456, 400, 3, true));
+        
     }
     
     /**
@@ -214,6 +213,10 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new PokeCenter(160, 864, 1, 2));
         handler.addObject(new Store(608, 832, 1, 1));
         handler.addObject(new bankTrigger(320, 800, 1, 1));
+    
+        handler.addObject(new Encounter(2432, 64, 3, true));
+        handler.addObject(new Encounter(2784, 64, 3, true));
+        handler.addObject(new Encounter(2784, 320, 3, true));
         
     }
     

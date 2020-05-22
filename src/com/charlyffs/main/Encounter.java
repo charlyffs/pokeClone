@@ -19,19 +19,19 @@ public class Encounter extends GameObject {
         for (GameObject gameObject : handler.objects) {
             if (gameObject.getId() == ID.Player) {
                 newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
-//                if (collides != newCollides && newCollides) {
-//                    if (Player.immunity == 0) {
-//                        handler.setUp(false);
-//                        handler.setDown(false);
-//                        handler.setLeft(false);
-//                        handler.setRight(false);
-//                        System.out.println("Encounter.");
+                if (collides != newCollides && newCollides) {
+                    if (Player.immunity == 0) {
+                        handler.setUp(false);
+                        handler.setDown(false);
+                        handler.setLeft(false);
+                        handler.setRight(false);
+                        System.out.println("Encounter.");
 //                        Player.immunity += 20;
-//                        GameObserver.startFight(type, isGym);
-//                    } else {
-//                        Player.immunity -= 1;
-//                    }
-//                }
+                        GameObserver.startFight(type, isGym);
+                    } else {
+                        Player.immunity -= 1;
+                    }
+                }
                 collides = newCollides;
             }
         }

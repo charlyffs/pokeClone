@@ -29,15 +29,17 @@ public class Fight {
     private Pokemon playerPokemon, enemyPokemon;
     private int pokemonIndex;
     private final Random RNG = new Random();
-    public static boolean flag = false;
+    public static boolean isGym = false;
     
     void startFight(int type, boolean gym) {
+    
+        isGym = gym;
         
         pokemonInventory = Player.getPokemon();
         enemyPokemonList = new ArrayList<>();
         
         //If gym, get 7 random pokemon, else, get 1 pokemon
-        for (int i = 0; i < (gym ? 7 : 1); i++) {
+        for (int i = 0; i < (isGym ? 7 : 1); i++) {
             enemyPokemonList.add(DataBase.getPokeDex().get(RNG.nextInt(type)).clone());
         }
         enemyPokemon = enemyPokemonList.get(0);
@@ -104,6 +106,17 @@ public class Fight {
              for (Pokemon pokemon : pokemonInventory) {
                  if (pokemon.isParticipated()) {
                      pokemon.endOfBattle();
+                 }
+             }
+             if (isGym) {
+                 Game.medals += 1;
+                 if (Game.medals == 3) {
+                     alert.setHeaderText("CONGLATURATION YU WIN");
+                     alert.setTitle("GOODBYE");
+                     alert.showAndWait();
+                     // fixme This is a meme, change to System.exit before shipping.
+                     //     I know this isn't going to ship but it sounds cool okay
+                     Platform.exit();
                  }
              }
         } else {
@@ -274,8 +287,8 @@ public class Fight {
     
     private void updateBars() {
         Platform.runLater(() -> {
-            pokemonHealthBar.setPrefWidth((double) playerPokemon.getCurrentHP() / playerPokemon.getHp() * 156.0);
-            enemyHealthBar.setPrefWidth((double) enemyPokemon.getCurrentHP() / enemyPokemon.getHp() * 156.0);
+            pokemonHealthBar.setMaxWidth((double) playerPokemon.getCurrentHP() / playerPokemon.getHp() * 156.0);
+            enemyHealthBar.setMaxWidth((double) enemyPokemon.getCurrentHP() / enemyPokemon.getHp() * 156.0);
         });
     }
     
