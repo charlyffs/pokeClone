@@ -34,6 +34,6 @@ public class StoreController {
     }
     
     public void exitButtonClicked() {
-    
+        GameObserver.hideStage();
     }
 }

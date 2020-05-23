@@ -67,7 +67,7 @@ public class GameObserver extends Application {
         thread1.setName("Game");
         thread1.setPriority(Thread.MAX_PRIORITY);
         thread1.start();
-        
+        hideStage();
         game.setRunning(true);
     }
     
@@ -84,13 +84,13 @@ public class GameObserver extends Application {
             store = loader.getController();
             switchStage("Store");
             store.balanceLabel.setText("" + Player.getBalance());
+            showStage();
         });
     }
     
     public static void openBank() {
         
         Platform.runLater(() -> {
-            
             loader = new FXMLLoader(GameObserver.class.getResource("Bank.fxml"));
             try {
                 loader.load();
@@ -100,7 +100,7 @@ public class GameObserver extends Application {
             bank = loader.getController();
             switchStage("Bank");
             bank.updatePreviews();
-            
+            showStage();
         });
         
     }
@@ -118,7 +118,7 @@ public class GameObserver extends Application {
             switchStage("Fight");
             System.out.println("Stage switched");
         }
-        
+        showStage();
         fight.startFight(type, gym);
         thread1.suspend();
     }
@@ -130,13 +130,13 @@ public class GameObserver extends Application {
     
     public static void showStage() {
         System.out.println("Show stage...");
+        //fixme no jala esta ostia me voy a dar un tiro
         Platform.runLater(() -> stage.show());
     }
     
     public static void hideStage() {
         System.out.println("Hide stage...");
-        //fixme no jala esta ostia me voy a dar un tiro
-//        Platform.runLater(() -> stage.hide());
+        Platform.runLater(() -> stage.hide());
     }
     
     public static void stopT1() throws InterruptedException {

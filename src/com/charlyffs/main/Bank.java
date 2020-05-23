@@ -137,4 +137,7 @@ public class Bank {
         updatePreviews();
     }
     
+    public void exitButtonClicked() {
+        GameObserver.hideStage();
+    }
 }
