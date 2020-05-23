@@ -29,3 +29,6 @@ hs_err_pid*
 *.iml
 /out
 /res/Raw
+*.psd
+Capture.PNG
+*.xcf
