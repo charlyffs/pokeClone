@@ -26,7 +26,7 @@ public class Encounter extends GameObject {
                         handler.setLeft(false);
                         handler.setRight(false);
                         System.out.println("Encounter.");
-//                        Player.immunity += 20;
+                        Player.immunity += 20;
                         GameObserver.startFight(type, isGym);
                     } else {
                         Player.immunity -= 1;

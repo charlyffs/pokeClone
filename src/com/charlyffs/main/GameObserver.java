@@ -23,6 +23,13 @@ public class GameObserver extends Application {
         launch(args);
     }
     
+    // TODO:
+    //  add trainers at each trigger,
+    //  check that bank rejects putting more than 6 pkmn in belt,
+    //  falta una pared en arena,
+    //  quitar triggers después de vencer un gym,
+    //  terminar de declarar pokemones
+    
     @Override
     public void start(Stage stage) {
         GameObserver.stage = stage;
@@ -60,7 +67,7 @@ public class GameObserver extends Application {
         thread1.setName("Game");
         thread1.setPriority(Thread.MAX_PRIORITY);
         thread1.start();
-    
+        
         game.setRunning(true);
     }
     
@@ -81,9 +88,9 @@ public class GameObserver extends Application {
     }
     
     public static void openBank() {
-    
+        
         Platform.runLater(() -> {
-    
+            
             loader = new FXMLLoader(GameObserver.class.getResource("Bank.fxml"));
             try {
                 loader.load();
@@ -93,6 +100,7 @@ public class GameObserver extends Application {
             bank = loader.getController();
             switchStage("Bank");
             bank.updatePreviews();
+            
         });
         
     }

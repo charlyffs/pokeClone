@@ -49,7 +49,10 @@ public class Bank {
     
         setPanels(bank1Pokemon, bank1NameLabel, bank1InfoArea, bank1ImageView, bankNextPageButton, bank1AddButton);
         setPanels(bank2Pokemon, bank2NameLabel, bank2InfoArea, bank2ImageView, bankNextPageButton, bank2AddButton);
-    
+        
+        bank1AddButton.setDisable(belt.size() == 6);
+        bank2AddButton.setDisable(belt.size() == 6);
+        
     }
     
     private void setPanels(Pokemon Pokemon, Label NameLabel, TextArea InfoArea, ImageView ImageView, Button NextPageButton, Button addRemoveButton) {

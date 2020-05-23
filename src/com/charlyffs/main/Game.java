@@ -37,17 +37,23 @@ public class Game extends Canvas implements Runnable {
         
         Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
         Player.getPokemon().add(DataBase.getPokemon(1).clone());
+        Player.getPokemon().add(DataBase.getPokemon(1).clone());
+        Player.getPokemon().add(DataBase.getPokemon(1).clone());
+        Player.getPokemon().add(DataBase.getPokemon(1).clone());
         Player.getPokemon().add(DataBase.getPokemon(2).clone());
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
-        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-        Player.getPokemon().get(0).setCurrentHP(99999);
+        Player.getInventory().add(new Pokeball());
+        Player.getInventory().add(new Pokeball());
+
+//        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+//        Player.getPokemon().get(0).setCurrentHP(99999);
         
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
         camera = new Camera(0, 0);
-        this.addKeyListener(new KeyInput(handler));
+        this.addKeyListener(new KeyInput());
     
         BufferedImageLoader loader = new BufferedImageLoader();
     

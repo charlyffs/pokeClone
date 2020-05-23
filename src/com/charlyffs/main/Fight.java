@@ -38,9 +38,12 @@ public class Fight {
         pokemonInventory = Player.getPokemon();
         enemyPokemonList = new ArrayList<>();
         
-        //If gym, get 7 random pokemon, else, get 1 pokemon
-        for (int i = 0; i < (isGym ? 7 : 1); i++) {
-            enemyPokemonList.add(DataBase.getPokeDex().get(RNG.nextInt(type)).clone());
+        //If gym, get 6 random pokemon of specified type, else, get 1 pokemon
+        for (int i = 0; i < (isGym ? 6 : 1); i++) {
+            //todo make type skip over pokemon of other type
+            //(if type is 20, this includes pokemon 1-10, which could be of another type).
+            int index = RNG.nextInt(type);
+            enemyPokemonList.add(DataBase.getPokeDex().get(index).clone());
         }
         enemyPokemon = enemyPokemonList.get(0);
     
@@ -79,12 +82,11 @@ public class Fight {
             playerImageView.setImage(new Image(playerPokemon.getURL()));
             pokemonLevel.setText("Level: " + playerPokemon.getLevel());
             pokemonName.setText(playerPokemon.getName());
-    
-            int i = 0;
-            setButtonData(action1Button, i++);
-            setButtonData(action2Button, i++);
-            setButtonData(action3Button, i++);
-            setButtonData(action4Button, i);
+            
+            setButtonData(action1Button, 0);
+            setButtonData(action2Button, 1);
+            setButtonData(action3Button, 2);
+            setButtonData(action4Button, 3);
         });
     }
     

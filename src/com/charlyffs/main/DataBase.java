@@ -146,7 +146,8 @@ public class DataBase {
         pokeDex.add(new Pokemon(200, 1, 3, "Bulbasaur"));
         pokeDex.add(new Pokemon(200, 1, 1, "Charmander"));
         pokeDex.add(new Pokemon(200,  1, 2, "Squirtle"));
-        for (int i = 0; i < 3; i++) {
+        
+        for (int i = 0; i < pokeDex.size(); i++) {
             pokeDex.get(i).addMove(1, 1, "Tackle", 25);
         }
     }

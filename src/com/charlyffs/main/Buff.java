@@ -17,4 +17,5 @@ class Buff extends Move{
             target.damage(10);
         }
     }
+    
 }

@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Pokeball extends Item {
     
-    public Pokeball(String name) {
-        super(name);
+    public Pokeball() {
+        super("Pokeball");
     }
     
     @Override

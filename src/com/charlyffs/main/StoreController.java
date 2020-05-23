@@ -26,7 +26,7 @@ public class StoreController {
             Player.balance -= 10;
             balanceLabel.setText("" + Player.balance);
             alert.setHeaderText("You bought one pokeball");
-            Player.getInventory().add(new Pokeball("Pokeball"));
+            Player.getInventory().add(new Pokeball());
         } else {
             alert.setHeaderText("You don't have enough money for that.");
         }
