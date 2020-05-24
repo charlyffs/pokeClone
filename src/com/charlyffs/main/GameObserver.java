@@ -41,7 +41,7 @@ public class GameObserver extends Application {
         }
         stage.show();
     }
-    
+    //
     //Swaps between fight and store UI
     public static void switchStage(String title) {
         System.out.println("switch stage");
