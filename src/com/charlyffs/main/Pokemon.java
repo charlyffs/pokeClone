@@ -8,6 +8,7 @@ public class Pokemon implements Cloneable{
     private final int hp, type;
     private int currentHP, xp, xpCap, level;
     private final String name;
+    private Pokemon evolution;
     private boolean participated;
     
     public Pokemon(int hp, int level, int type, String name) {
@@ -62,6 +63,7 @@ public class Pokemon implements Cloneable{
             level += 1;
             xpCap += 100;
             System.out.println("Level up\nLevel: " + level + "\nNewCap: " + xpCap );
+            //todo check evolution
         }
     }
     
@@ -105,7 +107,7 @@ public class Pokemon implements Cloneable{
     }
     
     public String getURL() {
-        return "/Pokemon/" + name + "/" + name + ".png";
+        return "/Pokemon/" + name + ".png";
     }
     
     @Override

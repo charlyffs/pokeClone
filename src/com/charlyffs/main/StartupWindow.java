@@ -16,19 +16,19 @@ public class StartupWindow {
     public void bulbasaurSelect() {
         charmanderRadio.setSelected(false);
         squirtleRadio.setSelected(false);
-        pokemonPicture.setImage(new Image("/Pokemon/Bulbasaur/Bulbasaur.png"));
+        pokemonPicture.setImage(new Image("/Pokemon/Bulbasaur.png"));
     }
     
     public void charmanderSelect() {
         bulbasaurRadio.setSelected(false);
         squirtleRadio.setSelected(false);
-        pokemonPicture.setImage(new Image("/Pokemon/Charmander/Charmander.png"));
+        pokemonPicture.setImage(new Image("/Pokemon/Charmander.png"));
     }
     
     public void squirtleSelect() {
         charmanderRadio.setSelected(false);
         bulbasaurRadio.setSelected(false);
-        pokemonPicture.setImage(new Image("/Pokemon/Squirtle/Squirtle.png"));
+        pokemonPicture.setImage(new Image("/Pokemon/Squirtle.png"));
     }
     
     public void startClicked() {

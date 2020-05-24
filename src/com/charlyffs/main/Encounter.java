@@ -22,7 +22,7 @@ public class Encounter extends GameObject {
             if (gameObject.getId() == ID.Player) {
                 boolean newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    if (Player.immunity < 1 || (isGym && !isBeaten)) {
+                    if ((Player.immunity < 1 || (isGym && !isBeaten)) && !(Player.getPokemon().size() == 0)) {
                         handler.setUp(false);
                         handler.setDown(false);
                         handler.setLeft(false);

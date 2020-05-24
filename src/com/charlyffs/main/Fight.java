@@ -232,18 +232,21 @@ public class Fight {
     private void updateInventoryButtons() {
         invPrevPageBtn.setDisable(invPage == 0);
         invNextPageBtn.setDisable(false);
-        setButtonStuff(invItem1Btn, invPage);
-        setButtonStuff(invItem2Btn, invPage + 1);
-        setButtonStuff(invItem3Btn, invPage + 2);
+        setButtonStuff(invItem1Btn, item1Image, invPage);
+        setButtonStuff(invItem2Btn, item2Image, invPage + 1);
+        setButtonStuff(invItem3Btn, item3Image, invPage + 2);
     }
     
-    private void setButtonStuff(Button button, int index) {
+    private void setButtonStuff(Button button, ImageView imageView, int index) {
         try {
             button.setText(inventory.get(index).getName());
+            imageView.setImage(new Image("/" + inventory.get(index).getName() + ".png"));
             button.setDisable(false);
             button.setVisible(true);
+            imageView.setVisible(true);
         } catch (Exception e) {
             invNextPageBtn.setDisable(true);
+            imageView.setVisible(false);
             button.setVisible(false);
         }
     }

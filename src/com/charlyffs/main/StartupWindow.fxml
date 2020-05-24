@@ -30,7 +30,7 @@
          </image></ImageView>
       <ImageView fx:id="pokemonPicture" fitHeight="281.0" fitWidth="291.0" layoutX="279.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/Pokemon/Bulbasaur/Bulbasaur.png" />
+            <Image url="@/Pokemon/Bulbasaur.png" />
          </image></ImageView>
    </children>
 </AnchorPane>
