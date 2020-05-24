@@ -139,8 +139,8 @@ public class GameObserver extends Application {
     
     public static void hideStage() {
         System.out.println("Hide stage...");
-        //FIXME TOGGLE ME TO SEE THE GAME WORKING
-        // Platform.runLater(() -> stage.hide());
+        //FIXME TOGGLE ME TO SEE THE GAME BREAK
+//         Platform.runLater(() -> stage.hide());
     }
     
     public static void stopT1() throws InterruptedException {
