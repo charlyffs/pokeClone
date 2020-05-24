@@ -4,30 +4,32 @@ import java.awt.*;
 
 public class Encounter extends GameObject {
     
-    private boolean collides = false, newCollides = false;
+    private boolean collides = false;
     private final int type;
     private final boolean isGym;
+    private boolean isBeaten;
     
     public Encounter(int x, int y, int type, boolean isGym) {
         super(ID.Encounter, x, y);
         this.type = type;
         this.isGym = isGym;
+        isBeaten = false;
     }
     
     @Override
     public void tick() {
         for (GameObject gameObject : handler.objects) {
             if (gameObject.getId() == ID.Player) {
-                newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
+                boolean newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    if (Player.immunity == 0) {
+                    if (Player.immunity < 1 || (isGym && !isBeaten)) {
                         handler.setUp(false);
                         handler.setDown(false);
                         handler.setLeft(false);
                         handler.setRight(false);
                         System.out.println("Encounter.");
-                        Player.immunity += 20;
-                        GameObserver.startFight(type, isGym);
+                        Player.immunity = 20;
+                        GameObserver.startFight(type, isGym, this);
                     } else {
                         Player.immunity -= 1;
                     }
@@ -35,6 +37,10 @@ public class Encounter extends GameObject {
                 collides = newCollides;
             }
         }
+    }
+    
+    public void setBeaten(boolean beaten) {
+        isBeaten = beaten;
     }
     
     @Override

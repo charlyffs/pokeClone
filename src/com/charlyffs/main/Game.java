@@ -20,6 +20,7 @@ public class Game extends Canvas implements Runnable {
     public static int starterPokemon;
     
     public static int medals;
+    private Encounter gym1, gym2, gym3;
     
     /**
      * Creates the new JFrame, puts the game instance inside of it, instantiates the handler, camera and level.
@@ -37,18 +38,14 @@ public class Game extends Canvas implements Runnable {
         
         Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
         Player.getPokemon().add(DataBase.getPokemon(1).clone());
-        Player.getPokemon().add(DataBase.getPokemon(1).clone());
-        Player.getPokemon().add(DataBase.getPokemon(1).clone());
-        Player.getPokemon().add(DataBase.getPokemon(1).clone());
-        Player.getPokemon().add(DataBase.getPokemon(2).clone());
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Pokeball());
         Player.getInventory().add(new Pokeball());
 
-//        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-//        Player.getPokemon().get(0).setCurrentHP(99999);
+        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
+        Player.getPokemon().get(0).setCurrentHP(99999);
         
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
@@ -220,9 +217,15 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(new Store(608, 832, 1, 1));
         handler.addObject(new bankTrigger(320, 800, 1, 1));
     
-        handler.addObject(new Encounter(2432, 64, 3, true));
-        handler.addObject(new Encounter(2784, 64, 3, true));
-        handler.addObject(new Encounter(2784, 320, 3, true));
+        //3 Gym fights
+    
+        gym1 = new Encounter(2432, 64, 3, true);
+        gym2 = new Encounter(2784, 64, 3, true);
+        gym3 = new Encounter(2784, 320, 3, true);
+        
+        handler.addObject(gym1);
+        handler.addObject(gym2);
+        handler.addObject(gym3);
         
     }
     

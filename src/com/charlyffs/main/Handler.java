@@ -1,10 +1,11 @@
 package com.charlyffs.main;
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Handler {
     
-    LinkedList<GameObject> objects = new LinkedList<>();
+    ArrayList<GameObject> objects = new ArrayList<>();
+    
     //Player movement indicators.
     private boolean up = false, down = false, left = false, right = false;
     

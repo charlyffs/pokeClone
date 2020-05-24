@@ -111,13 +111,14 @@ public class Fight {
                  }
              }
              if (isGym) {
+                 GameObserver.gymBeaten();
                  Game.medals += 1;
                  if (Game.medals == 3) {
                      alert.setHeaderText("CONGLATURATION YOU ARE WINNER");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
-                     // fixme This is a meme, change to System.exit before shipping.
-                     //     I know this isn't going to ship but it sounds cool okay
+                     // fixme change to System.exit() I just find it funny that it
+                     //  goes nuclear at the end of the game
                      Platform.exit();
                  }
              }

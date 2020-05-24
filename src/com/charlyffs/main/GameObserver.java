@@ -24,18 +24,14 @@ public class GameObserver extends Application {
     }
     
     // TODO:
-    //  add trainers at each trigger,
-    //  check that bank rejects putting more than 6 pkmn in belt,
-    //  falta una pared en arena,
-    //  quitar triggers después de vencer un gym,
-    //  terminar de declarar pokemones
+    //  remove trigger after winning in gym,
+    //  finish Database.fillPokeDex()
     
     @Override
     public void start(Stage stage) {
         GameObserver.stage = stage;
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
-        //Open main menu
         try {
             loader = new FXMLLoader(GameObserver.class.getResource("StartupWindow.fxml"));
             loader.load();
@@ -105,7 +101,10 @@ public class GameObserver extends Application {
         
     }
     
-    static void startFight(int type, boolean gym) {
+    private static Encounter currentEncounter;
+    
+    static void startFight(int type, boolean gym, Encounter encounter) {
+        currentEncounter = encounter;
         if (loader.getController() != fight) {
             loader = new FXMLLoader(GameObserver.class.getResource("Fight.fxml"));
             try {
@@ -123,6 +122,10 @@ public class GameObserver extends Application {
         thread1.suspend();
     }
     
+    public static void gymBeaten() {
+        currentEncounter.setBeaten(true);
+    }
+    
     public static void backToGame() {
         hideStage();
         thread1.resume();
@@ -130,13 +133,14 @@ public class GameObserver extends Application {
     
     public static void showStage() {
         System.out.println("Show stage...");
-        //fixme no jala esta ostia me voy a dar un tiro
+        //FIXME no jala esta ostia me voy a dar un tiro
         Platform.runLater(() -> stage.show());
     }
     
     public static void hideStage() {
         System.out.println("Hide stage...");
-        Platform.runLater(() -> stage.hide());
+        //FIXME TOGGLE ME TO SEE THE GAME WORKING
+        // Platform.runLater(() -> stage.hide());
     }
     
     public static void stopT1() throws InterruptedException {
