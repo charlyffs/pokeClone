@@ -65,17 +65,17 @@
       <Button fx:id="pokemonNextPageBtn" layoutX="169.0" layoutY="168.0" mnemonicParsing="false" onAction="#pokemonNextPageClick" prefHeight="26.0" prefWidth="76.0" text="&gt;" />
       <ImageView fx:id="Pokemon1Image" fitHeight="39.0" fitWidth="44.0" layoutX="7.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../pokeClone/res/Abra.png" />
+            <Image url="@../../../../res/Pokemon/Abra.png" />
          </image>
       </ImageView>
       <ImageView fx:id="Pokemon2Image" fitHeight="39.0" fitWidth="44.0" layoutX="7.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../pokeClone/res/Abra.png" />
+            <Image url="@../../../../res/Pokemon/Abra.png" />
          </image>
       </ImageView>
       <ImageView fx:id="Pokemon3Image" fitHeight="39.0" fitWidth="44.0" layoutX="7.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../pokeClone/res/Abra.png" />
+            <Image url="@../../../../res/Pokemon/Abra.png" />
          </image>
       </ImageView>
       <Label fx:id="Pokemon1DataLabel" layoutX="57.0" layoutY="80.0" text="DATA" />

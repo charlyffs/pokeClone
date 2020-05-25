@@ -4,31 +4,25 @@ import java.util.ArrayList;
 
 public class Pokemon implements Cloneable{
 
-    private final ArrayList<Move> moves;
-    private final int hp, type;
+    private final ArrayList<Attack> attacks;
+    private int hp;
+    private final int type;
     private int currentHP, xp, xpCap, level;
     private final String name;
     private Pokemon evolution;
     private boolean participated;
     
-    public Pokemon(int hp, int level, int type, String name) {
-        this.hp = hp;
-        this.currentHP = hp;
-        xp = 0;
-        this.xpCap = 100;
-        this.level = level;
-        this.type = type;
+    public Pokemon(String name, int hp, int type, String attackName) {
         this.name = name;
-        moves = new ArrayList<>();
+        this.hp = hp;
+        currentHP = hp;
+        level = 1;
+        xp = 0;
+        xpCap = 100;
+        this.type = type;
+        attacks = new ArrayList<>();
+        attacks.add(new Attack(attackName));
         participated = false;
-    }
-    
-    public void addMove(int type, int subType, String name, int hp) {
-        if (type == 1) {
-            moves.add(new Attack(name, hp));
-        } else {
-            moves.add(new Buff(name, hp, subType));
-        }
     }
     
     public Pokemon clone(){
@@ -60,11 +54,23 @@ public class Pokemon implements Cloneable{
         xp += 50;
         participated = false;
         if (xp >= xpCap) {
-            level += 1;
-            xpCap += 100;
-            System.out.println("Level up\nLevel: " + level + "\nNewCap: " + xpCap );
-            //todo check evolution
+            levelup();
         }
+    }
+    
+    public void levelup() {
+        level += 1;
+        xpCap += 100;
+        hp *= 1.1;
+        reset();
+    
+        if (level == 10) {
+            evolve(); //1st
+        } else if (level == 20) {
+            evolve(); //2nd
+        }
+    
+        System.out.println("Level up\nLevel: " + level + "\nNewCap: " + xpCap );
     }
     
     private void evolve() {
@@ -94,8 +100,8 @@ public class Pokemon implements Cloneable{
         return name;
     }
     
-    public ArrayList<Move> getMoves() {
-        return moves;
+    public ArrayList<Attack> getAttacks() {
+        return attacks;
     }
     
     public int getHp() {
@@ -106,6 +112,10 @@ public class Pokemon implements Cloneable{
         return level;
     }
     
+    public void setLevel(int level) {
+        this.level = level;
+    }
+    
     public String getURL() {
         return "/Pokemon/" + name + ".png";
     }
@@ -113,7 +123,7 @@ public class Pokemon implements Cloneable{
     @Override
     public String toString() {
         return "Pokemon{" +
-                ", moves=" + moves +
+                ", moves=" + attacks +
                 ", hp=" + hp +
                 ", type=" + type +
                 ", currentHP=" + currentHP +
@@ -123,4 +133,5 @@ public class Pokemon implements Cloneable{
                 ", name='" + name + '\'' +
                 '}';
     }
+    
 }

@@ -1,6 +1,7 @@
 package com.charlyffs.main;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -92,7 +93,7 @@ public class Fight {
     
     private void setButtonData(Button button, int index) {
         try {
-            button.setText(playerPokemon.getMoves().get(index).name);
+            button.setText(playerPokemon.getAttacks().get(index).getName());
         } catch (Exception e) {
             button.setDisable(true);
             button.setText("");
@@ -136,22 +137,22 @@ public class Fight {
     }
     
     public void doAction1() {
-        playerPokemon.getMoves().get(0).use(playerPokemon, enemyPokemon);
+        playerPokemon.getAttacks().get(0).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction2() {
-        playerPokemon.getMoves().get(1).use(playerPokemon, enemyPokemon);
+        playerPokemon.getAttacks().get(1).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction3() {
-        playerPokemon.getMoves().get(2).use(playerPokemon, enemyPokemon);
+        playerPokemon.getAttacks().get(2).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction4() {
-        playerPokemon.getMoves().get(3).use(playerPokemon, enemyPokemon);
+        playerPokemon.getAttacks().get(3).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
@@ -262,7 +263,7 @@ public class Fight {
             updateBars();
         }
         Random RNG = new Random();
-        enemyPokemon.getMoves().get(RNG.nextInt(enemyPokemon.getMoves().size())).use(enemyPokemon, playerPokemon);
+        enemyPokemon.getAttacks().get(RNG.nextInt(enemyPokemon.getAttacks().size())).use(enemyPokemon, playerPokemon);
         updateBars();
         if (playerPokemon.getCurrentHP() < 1){
             getLivingPokemon();

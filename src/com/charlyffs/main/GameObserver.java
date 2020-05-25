@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -22,10 +23,6 @@ public class GameObserver extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
-    // TODO:
-    //  remove trigger after winning in gym,
-    //  finish Database.fillPokeDex()
     
     @Override
     public void start(Stage stage) {

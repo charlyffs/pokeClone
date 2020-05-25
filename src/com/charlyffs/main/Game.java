@@ -29,6 +29,7 @@ public class Game extends Canvas implements Runnable {
     Game() {
         DataBase.fillTable();
         DataBase.fillPokeDex();
+        System.out.println(DataBase.getPokeDex().size());
         int width = 1280;
         int height = 720;
         new Window(width, height, "PokeClone", this);
@@ -43,9 +44,6 @@ public class Game extends Canvas implements Runnable {
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Pokeball());
         Player.getInventory().add(new Pokeball());
-
-        Player.getPokemon().get(0).getMoves().get(0).setHp(999);
-        Player.getPokemon().get(0).setCurrentHP(99999);
         
         System.out.println(player.toString());
         System.out.println(Player.getPokemon().get(0).toString());
@@ -177,7 +175,7 @@ public class Game extends Canvas implements Runnable {
                 if (red == 255) {
                     handler.addObject(new Block(x, y - 1));
                 } else if (colorsEqual(100)) {
-                    handler.addObject(new Encounter(x, y, 3, false));
+                    handler.addObject(new Encounter(x, y, 150, false));
                 } else if (colorsEqual(131)) {
                     handler.addObject(new Transition(x, y, 216, 930, 1,1));
                 } else if (colorsEqual(141)) {

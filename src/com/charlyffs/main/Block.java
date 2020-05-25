@@ -14,9 +14,7 @@ public class Block extends GameObject {
     
     @Override
     public void render(Graphics g) {
-        //todo remove, debugging purposes
-        g.setColor(Color.green);
-        g.drawRect(getX(), getY(), 32 , 32);
+    
     }
     
 }

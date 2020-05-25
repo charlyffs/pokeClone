@@ -23,6 +23,7 @@ public class Encounter extends GameObject {
                 boolean newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
                     if ((Player.immunity < 1 || (isGym && !isBeaten)) && !(Player.getPokemon().size() == 0)) {
+                        //todo check if all pokemon are dead
                         handler.setUp(false);
                         handler.setDown(false);
                         handler.setLeft(false);
@@ -45,7 +46,7 @@ public class Encounter extends GameObject {
     
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.black);
-        g.drawRect(x,y,32,32);
+    
     }
+    
 }
