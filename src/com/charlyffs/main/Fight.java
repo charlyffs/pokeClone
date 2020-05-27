@@ -46,6 +46,7 @@ public class Fight {
             int index = RNG.nextInt(type);
             enemyPokemonList.add(DataBase.getPokeDex().get(index).clone());
         }
+        
         enemyPokemon = enemyPokemonList.get(0);
     
         playerPokemon = null;
@@ -104,13 +105,15 @@ public class Fight {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         pokemonInventory.add(pokemonIndex, playerPokemon);
          if (enemyPokemon.getCurrentHP() < 1) {
-            alert.setHeaderText("WIN");
-            Player.setBalance(Player.getBalance() + 15);
+            alert.setHeaderText("Victory");
+             Player.setBalance(Player.getBalance() + 15);
+             
              for (Pokemon pokemon : pokemonInventory) {
                  if (pokemon.isParticipated()) {
-                     pokemon.endOfBattle();
+                     pokemonInventory.set(pokemonInventory.indexOf(pokemon), Pokemon.endOfBattle(pokemon));
                  }
              }
+             
              if (isGym) {
                  GameObserver.gymBeaten();
                  Game.medals += 1;
@@ -124,11 +127,11 @@ public class Fight {
                  }
              }
         } else {
-            alert.setHeaderText("LOSE");
+            alert.setHeaderText("Defeat");
         }
         alert.showAndWait();
         enemyPokemon.reset();
-        GameObserver.backToGame();
+        GameObserver.hideStage();
     }
     
     private void printData() {

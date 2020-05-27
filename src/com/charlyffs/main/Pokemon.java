@@ -7,14 +7,18 @@ public class Pokemon implements Cloneable{
     private final ArrayList<Attack> attacks;
     private int hp;
     private final int type;
-    private int currentHP, xp, xpCap, level;
+    private int currentHP, xp, level;
+    private final int nat, xpCap;
     private final String name;
-    private Pokemon evolution;
+    private boolean canEvolve, hasEvolved;
     private boolean participated;
     
-    public Pokemon(String name, int hp, int type, String attackName) {
+    public Pokemon(int nat, String name, int hp, int type, String attackName, boolean canEvolve) {
         this.name = name;
         this.hp = hp;
+        this.canEvolve = canEvolve;
+        this.nat = nat;
+        hasEvolved = false;
         currentHP = hp;
         level = 1;
         xp = 0;
@@ -50,34 +54,60 @@ public class Pokemon implements Cloneable{
         this.participated = participated;
     }
     
-    public void endOfBattle() {
-        xp += 50;
-        participated = false;
-        if (xp >= xpCap) {
-            levelup();
+    public static Pokemon endOfBattle(Pokemon pokemon) {
+        pokemon.xp += 100;
+        pokemon.participated = false;
+        if (pokemon.xp >= pokemon.xpCap) {
+            pokemon = levelup(pokemon);
         }
+        return pokemon;
     }
     
-    public void levelup() {
-        level += 1;
-        xpCap += 100;
-        hp *= 1.1;
-        reset();
+    public static Pokemon levelup(Pokemon pokemon) {
     
-        if (level == 10) {
-            evolve(); //1st
-        } else if (level == 20) {
-            evolve(); //2nd
+        pokemon.level += 1;
+        pokemon.xp = 0;
+        pokemon.hp *= 1.1;
+    
+        if (pokemon.canEvolve) {
+            System.out.println(pokemon.name + " evolves!");
+            if (pokemon.level == 10 && !pokemon.hasEvolved) {
+                pokemon = evolve(pokemon);
+                pokemon.hasEvolved = true;
+            } else if (pokemon.level == 20) {
+                pokemon = evolve(pokemon);
+                pokemon.canEvolve = false;
+            }
         }
     
-        System.out.println("Level up\nLevel: " + level + "\nNewCap: " + xpCap );
+        System.out.println("Level up\nLevel: " + pokemon.level + "\nNewCap: " + pokemon.xpCap);
+    
+        pokemon.reset();
+        return pokemon;
     }
     
-    private void evolve() {
-        //todo Turn this pokemon into evolution
-        //name = evolution.getName();
-        //change sprites, moves maybe?
-        //replace pokemon in belt with clone from database, set level and hp to be equal.
+    private static Pokemon evolve(Pokemon pokemon) {
+        int level = pokemon.level;
+    
+        int index = -1;
+        
+        for (Pokemon tempPokemon : DataBase.getPokeDex()) {
+            if (tempPokemon.getNat() == pokemon.getNat() + 1) {
+                index = DataBase.getPokeDex().indexOf(tempPokemon);
+            }
+        }
+    
+        pokemon = DataBase.getPokemon(index).clone();
+        pokemon.hasEvolved = true;
+        for (int i = 0; i < level; i++) {
+            pokemon = levelup(pokemon);
+        }
+    
+        return pokemon;
+    }
+    
+    public int getNat() {
+        return nat;
     }
     
     public void reset() {

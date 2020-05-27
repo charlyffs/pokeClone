@@ -10,6 +10,10 @@ class Attack {
         hp = 10;
     }
     
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+    
     void use(Pokemon source, Pokemon target) {
         double amount = (double) source.getLevel() / target.getLevel() * hp * (DataBase.getModifier(source.getType(), target.getType()));
         target.damage(amount);

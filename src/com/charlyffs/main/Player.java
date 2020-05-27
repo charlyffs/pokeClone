@@ -45,19 +45,6 @@ public class Player extends GameObject {
 
         if (handler.isLeft()) velX = -5;
         else if(!handler.isRight()) velX = 0;
-    
-//        if (handler.isUp()) {
-//            velY -= 5;
-//        }
-//        if (handler.isDown()) {
-//            velY += 5;
-//        }
-//        if (handler.isRight()) {
-//            velX += 5;
-//        }
-//        if (handler.isLeft()) {
-//            velX -= 5;
-//        }
         
     }
     

@@ -5,11 +5,10 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class GameObserver extends Application {
     
@@ -32,6 +31,9 @@ public class GameObserver extends Application {
         try {
             loader = new FXMLLoader(GameObserver.class.getResource("StartupWindow.fxml"));
             loader.load();
+            StartupWindow controller = loader.getController();
+            controller.maleSelect();
+            controller.bulbasaurSelect();
             switchStage("Main Menu");
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,30 +116,34 @@ public class GameObserver extends Application {
             switchStage("Fight");
             System.out.println("Stage switched");
         }
-        showStage();
+        
         fight.startFight(type, gym);
-        thread1.suspend();
+        showStage();
+        
     }
     
     public static void gymBeaten() {
         currentEncounter.setBeaten(true);
     }
     
-    public static void backToGame() {
-        hideStage();
-        thread1.resume();
-    }
+    private static int x = 400, y = 200;
     
     public static void showStage() {
         System.out.println("Show stage...");
         //FIXME no jala esta ostia me voy a dar un tiro
         Platform.runLater(() -> stage.show());
+        x = Game.player.getX();
+        y = Game.player.getY();
+        thread1.suspend();
     }
     
     public static void hideStage() {
         System.out.println("Hide stage...");
         //FIXME TOGGLE ME TO SEE THE GAME BREAK
 //         Platform.runLater(() -> stage.hide());
+        thread1.resume();
+        Game.player.setX(x);
+        Game.player.setY(y);
     }
     
     public static void stopT1() throws InterruptedException {

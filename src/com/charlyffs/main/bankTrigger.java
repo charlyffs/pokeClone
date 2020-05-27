@@ -24,6 +24,10 @@ public class bankTrigger extends GameObject {
                 newCollides = new Rectangle(x, y, width * 32, height * 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
                     System.out.println("Entered bank");
+                    handler.setUp(false);
+                    handler.setDown(false);
+                    handler.setLeft(false);
+                    handler.setRight(false);
                     GameObserver.openBank();
                 }
             }
