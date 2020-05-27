@@ -37,8 +37,6 @@ public class bankTrigger extends GameObject {
     
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.orange);
-        g.drawRect(getX(), getY(), width * 32, height * 32);
     }
     
 }

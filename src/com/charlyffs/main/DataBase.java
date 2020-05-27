@@ -1,5 +1,7 @@
 package com.charlyffs.main;
+import java.awt.*;
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 
 public class DataBase {
     
@@ -243,10 +245,10 @@ public class DataBase {
         pokeDex.add(new Pokemon(107, "Hitmonchan",  50, 6, "Drain Punch", false));
         pokeDex.add(new Pokemon(23, "Ekans",  30, 7, "Poison Sting", true));
         pokeDex.add(new Pokemon(24, "Arbok",  60, 7, "Poison Sting", false));
-        pokeDex.add(new Pokemon(29, "Nidoran ♀",  55, 7, "Scratch", true));
+        pokeDex.add(new Pokemon(29, "Nidoran",  55, 7, "Scratch", true));
         pokeDex.add(new Pokemon(30, "Nidorina",  70, 7, "Poison Sting", true));
         pokeDex.add(new Pokemon(31, "Nidoqueen",  90, 7, "Poison Sting", false));
-        pokeDex.add(new Pokemon(32, "Nidoran ♂",  46, 7, "Peck", true));
+        pokeDex.add(new Pokemon(32, "Nidoran",  46, 7, "Peck", true));
         pokeDex.add(new Pokemon(33, "Nidorino",  61, 7, "Poison Sting", true));
         pokeDex.add(new Pokemon(34, "Nidoking",  81, 7, "Peck", false));
         pokeDex.add(new Pokemon(41, "Zubat",  40, 7, "Absorb", true));

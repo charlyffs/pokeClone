@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane pickOnBounds="false" prefHeight="234.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.Fight">
+<AnchorPane maxHeight="286.4" maxWidth="510.4" minHeight="286.4" minWidth="510.4" pickOnBounds="false" prefHeight="286.4" prefWidth="510.4" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.Fight">
    <children>
       <ImageView fitHeight="286.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <ImageView fx:id="enemyImageView" fitHeight="192.0" fitWidth="192.0" layoutX="285.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="playerImageView" fitHeight="192.0" fitWidth="192.0" layoutX="29.0" layoutY="94.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="playerImageView" fitHeight="192.0" fitWidth="192.0" layoutX="29.0" layoutY="134.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="346.0" layoutY="205.0" mnemonicParsing="false" onAction="#fightButtonClick" prefHeight="37.0" prefWidth="80.0" text="Fight" />
       <Button layoutX="428.0" layoutY="205.0" mnemonicParsing="false" onAction="#bagButtonClicked" prefHeight="37.0" prefWidth="80.0" text="Bag" />
       <Button layoutX="346.0" layoutY="245.0" mnemonicParsing="false" onAction="#pokemonButtonClick" prefHeight="37.0" prefWidth="80.0" text="Pokemon" />

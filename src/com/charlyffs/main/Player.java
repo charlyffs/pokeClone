@@ -48,6 +48,10 @@ public class Player extends GameObject {
         
     }
     
+    public String getName() {
+        return name;
+    }
+    
     //Distance that will be used for pseudo-raycasting
     private final int range = 4;
     

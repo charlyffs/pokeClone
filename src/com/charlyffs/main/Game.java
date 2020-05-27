@@ -3,6 +3,7 @@ package com.charlyffs.main;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
     
@@ -44,6 +45,14 @@ public class Game extends Canvas implements Runnable {
         handler.addObject(medal3);
         
         Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
+        Random RNG = new Random();
+        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
+        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
+        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
+        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
+        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
+        
+        
         Player.getInventory().add(new Potion("Healing potion", 50));
         Player.getInventory().add(new Pokeball());
         

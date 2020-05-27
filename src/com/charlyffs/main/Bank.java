@@ -1,14 +1,10 @@
 package com.charlyffs.main;
 
-import com.sun.source.tree.TryTree;
-import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Bank {

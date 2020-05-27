@@ -1,78 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="395.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.Bank">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="395.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.charlyffs.main.Bank">
    <children>
-      <Button fx:id="belt1RemoveButton" layoutX="213.0" layoutY="88.0" mnemonicParsing="false" onAction="#belt1RemoveButtonClicked" prefHeight="42.0" prefWidth="126.0" text="-&gt;">
+      <ImageView fitHeight="457.0" fitWidth="567.0" layoutX="-5.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/bank.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="belt1RemoveButton" layoutX="213.0" layoutY="88.0" mnemonicParsing="false" onAction="#belt1RemoveButtonClicked" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #c95234;" text="-&gt;">
          <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Button>
-      <Label fx:id="belt1NameLabel" layoutX="115.0" layoutY="56.0" prefHeight="18.0" prefWidth="90.0" text="NAME">
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="belt1NameLabel" alignment="CENTER" layoutX="7.0" layoutY="156.0" opacity="0.76" prefHeight="54.0" prefWidth="75.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="17.0" />
          </font></Label>
-      <Button fx:id="beltPrevPageButton" layoutX="33.0" layoutY="334.0" mnemonicParsing="false" onAction="#beltPrevPageButtonClicked" prefHeight="26.0" prefWidth="75.0" text="&lt;" />
-      <Button fx:id="beltNextPageButton" layoutX="122.0" layoutY="334.0" mnemonicParsing="false" onAction="#beltNextPageButtonClicked" prefHeight="26.0" prefWidth="75.0" text="&gt;" />
-      <Label layoutX="397.0" layoutY="2.0" text="Bank">
+      <Button fx:id="beltPrevPageButton" layoutX="33.0" layoutY="349.0" mnemonicParsing="false" onAction="#beltPrevPageButtonClicked" opacity="0.8" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #24e9ff;" text="&lt;">
          <font>
-            <Font size="46.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Label>
-      <TextArea fx:id="belt1InfoArea" layoutX="89.0" layoutY="83.0" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
-      <ImageView fx:id="belt1ImageView" fitHeight="68.0" fitWidth="75.0" layoutX="11.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="70.0" layoutY="-1.0" text="Belt">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="beltNextPageButton" layoutX="122.0" layoutY="349.0" mnemonicParsing="false" onAction="#beltNextPageButtonClicked" opacity="0.8" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #24e9ff;" text="&gt;">
          <font>
-            <Font size="46.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Label>
-      <Label fx:id="belt2NameLabel" layoutX="115.0" layoutY="193.0" prefHeight="18.0" prefWidth="90.0" text="NAME">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="belt2InfoArea" layoutX="89.0" layoutY="220.0" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
-      <ImageView fx:id="belt2ImageView" fitHeight="68.0" fitWidth="75.0" layoutX="11.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="bank1AddButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#bank1AddButtonClicked" prefHeight="42.0" prefWidth="125.0" text="&lt;-">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="bankPrevPageButton" layoutX="364.0" layoutY="337.0" mnemonicParsing="false" onAction="#bankPrevPageButtonClicked" prefHeight="26.0" prefWidth="75.0" text="&lt;" />
-      <Button fx:id="bankNextPageButton" layoutX="453.0" layoutY="337.0" mnemonicParsing="false" onAction="#bankNextPageButtonClicked" prefHeight="26.0" prefWidth="75.0" text="&gt;" />
-      <TextArea fx:id="bank1InfoArea" layoutX="348.0" layoutY="88.0" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
-      <ImageView fx:id="bank1ImageView" fitHeight="68.0" fitWidth="75.0" layoutX="473.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="bank2NameLabel" layoutX="374.0" layoutY="198.0" prefHeight="18.0" prefWidth="90.0" text="NAME">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextArea fx:id="belt1InfoArea" layoutX="89.0" layoutY="83.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <ImageView fx:id="belt1ImageView" fitHeight="100.0" fitWidth="101.0" layoutX="-6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="belt2NameLabel" alignment="CENTER" layoutX="8.0" layoutY="291.0" opacity="0.76" prefHeight="54.0" prefWidth="75.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextArea fx:id="bank2InfoArea" layoutX="348.0" layoutY="225.0" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
-      <ImageView fx:id="bank2ImageView" fitHeight="68.0" fitWidth="75.0" layoutX="473.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="belt2RemoveButton" layoutX="212.0" layoutY="223.0" mnemonicParsing="false" onAction="#belt2RemoveButtonClicked" prefHeight="42.0" prefWidth="126.0" text="-&gt;">
+      <TextArea fx:id="belt2InfoArea" layoutX="89.0" layoutY="220.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <ImageView fx:id="belt2ImageView" fitHeight="100.0" fitWidth="101.0" layoutX="-6.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="bank1AddButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#bank1AddButtonClicked" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #5d823d;" text="&lt;-">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold Italic" size="19.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Button fx:id="bank2AddButton" layoutX="213.0" layoutY="273.0" mnemonicParsing="false" onAction="#bank2AddButtonClicked" prefHeight="42.0" prefWidth="125.0" text="&lt;-">
+      <Button fx:id="bankPrevPageButton" layoutX="364.0" layoutY="352.0" mnemonicParsing="false" onAction="#bankPrevPageButtonClicked" opacity="0.8" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #24e9ff;" text="&lt;">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
-      </Button>
-      <Label fx:id="bank1NameLabel" layoutX="360.0" layoutY="57.0" prefHeight="18.0" prefWidth="90.0" text="NAME">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="bankNextPageButton" layoutX="453.0" layoutY="352.0" mnemonicParsing="false" onAction="#bankNextPageButtonClicked" opacity="0.8" prefHeight="26.0" prefWidth="75.0" style="-fx-background-color: #24e9ff;" text="&gt;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <TextArea fx:id="bank1InfoArea" layoutX="348.0" layoutY="88.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <ImageView fx:id="bank1ImageView" fitHeight="84.0" fitWidth="93.0" layoutX="464.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="bank2NameLabel" alignment="CENTER" layoutX="473.0" layoutY="294.0" opacity="0.76" prefHeight="54.0" prefWidth="78.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="241.0" layoutY="331.0" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="38.0" prefWidth="75.0" text="Exit">
+      <TextArea fx:id="bank2InfoArea" layoutX="348.0" layoutY="225.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <ImageView fx:id="bank2ImageView" fitHeight="92.0" fitWidth="101.0" layoutX="460.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="belt2RemoveButton" layoutX="212.0" layoutY="223.0" mnemonicParsing="false" onAction="#belt2RemoveButtonClicked" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #c95234;" text="-&gt;">
          <font>
-            <Font size="16.0" />
+            <Font name="System Bold Italic" size="19.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="bank2AddButton" layoutX="213.0" layoutY="273.0" mnemonicParsing="false" onAction="#bank2AddButtonClicked" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #5d823d;" text="&lt;-">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="bank1NameLabel" alignment="CENTER" layoutX="471.0" layoutY="156.0" opacity="0.76" prefHeight="54.0" prefWidth="78.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Button layoutX="241.0" layoutY="331.0" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="38.0" prefWidth="75.0" style="-fx-background-color: #4c6fa6;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

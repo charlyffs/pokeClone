@@ -151,7 +151,7 @@ public class Fight {
                          System.out.println("Game over");
                  }
                  if (Game.medals == 3) {
-                     alert.setHeaderText("CONGLATURATION YOU ARE WINNER");
+                     alert.setHeaderText("CONGLATURATION " + Game.player.getName() + ". YOU ARE WINNER");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
                      // fixme change to System.exit() I just find it funny that it
