@@ -19,8 +19,6 @@ public class GameObserver extends Application {
     private static Thread thread1;
     public static Stage stage;
     
-    //todo display medals on screen
-    
     public static void main(String[] args) {
         launch(args);
     }
