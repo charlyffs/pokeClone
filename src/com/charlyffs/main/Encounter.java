@@ -22,8 +22,13 @@ public class Encounter extends GameObject {
             if (gameObject.getId() == ID.Player) {
                 boolean newCollides = new Rectangle(x, y, 32, 32).intersects(gameObject.getBounds());
                 if (collides != newCollides && newCollides) {
-                    if ((Player.immunity < 1 || (isGym && !isBeaten)) && !(Player.getPokemon().size() == 0)) {
-                        //todo check if all pokemon are dead
+                    boolean alive = false;
+                    for (Pokemon pokemon : Player.getPokemon()) {
+                        if (pokemon.getCurrentHP() > 0) {
+                            alive = true;
+                        }
+                    }
+                    if (alive && (Player.immunity < 1 || (isGym && !isBeaten)) && !(Player.getPokemon().size() == 0)) {
                         handler.setUp(false);
                         handler.setDown(false);
                         handler.setLeft(false);

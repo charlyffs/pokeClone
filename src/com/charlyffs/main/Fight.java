@@ -33,11 +33,21 @@ public class Fight {
     public static boolean isGym = false;
     
     void startFight(int type, boolean gym) {
-    
+        
         isGym = gym;
         
         pokemonInventory = Player.getPokemon();
         enemyPokemonList = new ArrayList<>();
+        
+        int x = 0;
+        int sum = 0;
+        for (Pokemon pokemon : pokemonInventory) {
+            sum += pokemon.getLevel();
+            x++;
+        }
+    
+        x = sum / x;
+        x--;
         
         //If gym, get 6 random pokemon of specified type, else, get 1 pokemon
         for (int i = 0; i < (isGym ? 6 : 1); i++) {
@@ -45,6 +55,16 @@ public class Fight {
             //(if type is 20, this includes pokemon 1-10, which could be of another type).
             int index = RNG.nextInt(type);
             enemyPokemonList.add(DataBase.getPokeDex().get(index).clone());
+        }
+    
+        x = isGym ? 20 : x;
+        
+        for (Pokemon pokemon : enemyPokemonList) {
+            int index = enemyPokemonList.indexOf(pokemon);
+            for (int i = 0; i < x; i++) {
+                enemyPokemonList.set(index, Pokemon.levelup(pokemon));
+                pokemon = enemyPokemonList.get(index);
+            }
         }
         
         enemyPokemon = enemyPokemonList.get(0);
@@ -117,13 +137,26 @@ public class Fight {
              if (isGym) {
                  GameObserver.gymBeaten();
                  Game.medals += 1;
+                 switch (Game.medals) {
+                     case 1:
+                         Game.medal1.setRendering(true);
+                         break;
+                     case 2:
+                         Game.medal2.setRendering(true);
+                         break;
+                     case 3:
+                         Game.medal3.setRendering(true);
+                         break;
+                     case 4:
+                         System.out.println("Game over");
+                 }
                  if (Game.medals == 3) {
                      alert.setHeaderText("CONGLATURATION YOU ARE WINNER");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
                      // fixme change to System.exit() I just find it funny that it
                      //  goes nuclear at the end of the game
-                     Platform.exit();
+//                     Platform.exit();
                  }
              }
         } else {
@@ -275,9 +308,6 @@ public class Fight {
     }
     
     private void getLivingPokemon() {
-        if (playerPokemon != null) {
-            pokemonInventory.add(pokemonIndex, playerPokemon);
-        }
         for (Pokemon pokemon : pokemonInventory) {
             if (pokemon.getCurrentHP() > 0) {
                 pokemonIndex = pokemonInventory.indexOf(pokemon);
@@ -391,6 +421,7 @@ public class Fight {
             imageView.setImage(new Image(holder.getURL()));
             imageView.setVisible(true);
             button.setVisible(true);
+            button.setDisable(holder.getCurrentHP() < 1);
             label.setVisible(true);
             pokemonNextPageBtn.setDisable(false);
         } catch (Exception e) {

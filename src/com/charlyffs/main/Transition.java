@@ -40,7 +40,7 @@ public class Transition extends GameObject {
     
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.yellow);
-        g.drawRect(getX(), getY(), width * 32, height * 32);
+//        g.setColor(Color.yellow);
+//        g.drawRect(getX(), getY(), width * 32, height * 32);
     }
 }

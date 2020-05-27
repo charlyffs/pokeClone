@@ -89,10 +89,10 @@ public class Player extends GameObject {
         
         g.drawImage(loader.loadImage(path), x, y, null);
         //todo remove debug raycast boxes
-        g.drawRect((int) up.getX(), (int) up.getY(), (int) up.getWidth(), (int) up.getHeight());
-        g.drawRect((int) down.getX(), (int) down.getY(), (int) down.getWidth(), (int) down.getHeight());
-        g.drawRect((int) left.getX(), (int) left.getY(), (int) left.getWidth(), (int) left.getHeight());
-        g.drawRect((int) right.getX(), (int) right.getY(), (int) right.getWidth(), (int) right.getHeight());
+//        g.drawRect((int) up.getX(), (int) up.getY(), (int) up.getWidth(), (int) up.getHeight());
+//        g.drawRect((int) down.getX(), (int) down.getY(), (int) down.getWidth(), (int) down.getHeight());
+//        g.drawRect((int) left.getX(), (int) left.getY(), (int) left.getWidth(), (int) left.getHeight());
+//        g.drawRect((int) right.getX(), (int) right.getY(), (int) right.getWidth(), (int) right.getHeight());
     }
     
     public static ArrayList<Pokemon> getPokemon() {
@@ -129,5 +129,6 @@ public class Player extends GameObject {
     public static void addToBank(Pokemon pokemon) {
         bank.add(pokemon);
     }
+    
     
 }

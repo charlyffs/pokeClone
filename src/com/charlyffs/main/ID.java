@@ -10,5 +10,6 @@ public enum ID {
     Block(),
     PokeCenter(),
     Store(),
-    Bank()
+    Bank(),
+    Medal()
 }

@@ -9,7 +9,6 @@ public class Game extends Canvas implements Runnable {
     private final BufferedImage levelArt;
     private final Camera camera;
     
-    //Technical stuff.
     private int red, green, blue;
     public static final Handler handler = new Handler();
     private boolean running = false;
@@ -20,6 +19,7 @@ public class Game extends Canvas implements Runnable {
     public static int starterPokemon;
     
     public static int medals;
+    public static Medal medal1, medal2, medal3;
     private Encounter gym1, gym2, gym3;
     
     /**
@@ -33,16 +33,18 @@ public class Game extends Canvas implements Runnable {
         int width = 1280;
         int height = 720;
         new Window(width, height, "PokeClone", this);
-        
+    
+        medal1 = new Medal("/bronze.png", 0);
+        medal2 = new Medal("/silver.png", 84);
+        medal3 = new Medal("/gold.png", 168);
         player = new Player(ID.Player, 400, 200, playerGender, playerName);
         handler.addObject(player);
+        handler.addObject(medal1);
+        handler.addObject(medal2);
+        handler.addObject(medal3);
         
         Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
-        Player.getPokemon().add(DataBase.getPokemon(1).clone());
         Player.getInventory().add(new Potion("Healing potion", 50));
-        Player.getInventory().add(new Potion("Healing potion", 50));
-        Player.getInventory().add(new Potion("Healing potion", 50));
-        Player.getInventory().add(new Pokeball());
         Player.getInventory().add(new Pokeball());
         
         System.out.println(player.toString());

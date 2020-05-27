@@ -142,10 +142,7 @@ public class DataBase {
     }
     
     public static void fillPokeDex() {
-    
-//        pokeDex.get(pokeDex.size() - 1).setCurrentHP(9999999);
-//        pokeDex.get(pokeDex.size() - 1).getAttacks().get(0).setHp(9999999);
-//        pokeDex.get(pokeDex.size() - 1).setLevel(9)
+        
         pokeDex.add(new Pokemon(16, "Pidgey",  40, 0, "Tackle", true));
         pokeDex.add(new Pokemon(17, "Pidgeotto",  63, 0, "Gust", true));
         pokeDex.add(new Pokemon(18, "Pidgeot",  83, 0, "Gust", false));
@@ -210,7 +207,11 @@ public class DataBase {
         pokeDex.add(new Pokemon(131, "Lapras",  130, 2, "Water Gun", false));
         pokeDex.add(new Pokemon(134, "Vaporeon",  130, 2, "Water Gun", false));
         pokeDex.add(new Pokemon(129, "Magikarp", 20, 2, "Splash", true));
-        pokeDex.add(new Pokemon(1, "Bulbasaur",  45, 3, "Tackle", true));
+        pokeDex.add(new Pokemon(1, "Bulbasaur", 45, 3, "Tackle", true));
+//        pokeDex.get(pokeDex.size() - 1).setCurrentHP(999999999);
+//        pokeDex.get(pokeDex.size() - 1).setHp(999999999);
+//        pokeDex.get(pokeDex.size() - 1).getAttacks().get(0).setHp(999999999);
+//        pokeDex.get(pokeDex.size() - 1).setLevel(999);
         pokeDex.add(new Pokemon(2, "Ivysaur",  60, 3, "Vine Whip", true));
         pokeDex.add(new Pokemon(3, "Venusaur",  80, 3, "Petal Blizzard", false));
         pokeDex.add(new Pokemon(43, "Oddish",  45, 3, "Absorb", true));
@@ -298,9 +299,7 @@ public class DataBase {
         pokeDex.add(new Pokemon(148, "Dragonair",  61, 14, "Dragon Rage", true));
         pokeDex.add(new Pokemon(149, "Dragonite",  91, 14, "Aqua Jet", false));
         
-        pokeDex.get(60).getAttacks().get(0).setHp(0);
-        pokeDex.get(125).getAttacks().get(0).setHp(0);
-        pokeDex.get(128).getAttacks().get(0).setHp(0);
+        pokeDex.get(63).getAttacks().get(0).setHp(0);
     }
     
     public static Pokemon getPokemon(int index) {

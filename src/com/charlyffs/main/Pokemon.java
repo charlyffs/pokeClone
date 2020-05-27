@@ -68,7 +68,8 @@ public class Pokemon implements Cloneable{
         pokemon.level += 1;
         pokemon.xp = 0;
         pokemon.hp *= 1.1;
-    
+        Attack attack = pokemon.getAttacks().get(0);
+        attack.setHp(attack.getHp() + 2);
         if (pokemon.canEvolve) {
             System.out.println(pokemon.name + " evolves!");
             if (pokemon.level == 10 && !pokemon.hasEvolved) {
@@ -88,12 +89,12 @@ public class Pokemon implements Cloneable{
     
     private static Pokemon evolve(Pokemon pokemon) {
         int level = pokemon.level;
-    
         int index = -1;
         
         for (Pokemon tempPokemon : DataBase.getPokeDex()) {
             if (tempPokemon.getNat() == pokemon.getNat() + 1) {
                 index = DataBase.getPokeDex().indexOf(tempPokemon);
+                break;
             }
         }
     
@@ -120,6 +121,10 @@ public class Pokemon implements Cloneable{
     
     public void setCurrentHP(int currentHP) {
         this.currentHP = currentHP;
+    }
+    
+    public void setHp(int hp) {
+        this.hp = hp;
     }
     
     public int getType() {
