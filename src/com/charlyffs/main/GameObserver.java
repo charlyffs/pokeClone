@@ -34,6 +34,7 @@ public class GameObserver extends Application {
             StartupWindow controller = loader.getController();
             controller.maleSelect();
             controller.bulbasaurSelect();
+            Audio.playFile("/Audio/TitleScreen.mp3");
             switchStage("Main Menu");
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +44,6 @@ public class GameObserver extends Application {
     
     //Swaps between fight and store UI
     public static void switchStage(String title) {
-        System.out.println("switch stage");
         Platform.runLater(() -> {
             try {
                 Parent root = loader.getRoot();
@@ -57,18 +57,18 @@ public class GameObserver extends Application {
     
     //On closing main menu, this is called.
     public static void startGame() {
+        Audio.playFile("/Audio/Ambient.mp3");
         Game game = new Game();
         thread1 = new Thread(game);
         thread1.setName("Game");
         thread1.setPriority(Thread.MAX_PRIORITY);
+        game.setRunning(true);
         thread1.start();
         hideStage();
-        game.setRunning(true);
     }
     
     //Switches UI and shows stage
     public static void openStore() {
-        System.out.println("Open store running...");
         Platform.runLater(() -> {
             loader = new FXMLLoader(GameObserver.class.getResource("Store.fxml"));
             try {
@@ -84,7 +84,6 @@ public class GameObserver extends Application {
     }
     
     public static void openBank() {
-        
         Platform.runLater(() -> {
             loader = new FXMLLoader(GameObserver.class.getResource("Bank.fxml"));
             try {
@@ -114,40 +113,44 @@ public class GameObserver extends Application {
             }
             fight = loader.getController();
             switchStage("Fight");
-            System.out.println("Stage switched");
         }
-        
         fight.startFight(type, gym);
         showStage();
-        
     }
     
     public static void gymBeaten() {
         currentEncounter.setBeaten(true);
     }
     
-    private static int x = 400, y = 200;
     
     public static void showStage() {
-        System.out.println("Show stage...");
+        KeyInput.active = false;
         //FIXME no jala esta ostia me voy a dar un tiro
-        Platform.runLater(() -> stage.show());
-        x = Game.player.getX();
-        y = Game.player.getY();
-        thread1.suspend();
+        Platform.runLater(() -> {
+            stage.toFront();
+//            stage.show();
+        });
     }
     
     public static void hideStage() {
-        System.out.println("Hide stage...");
+        KeyInput.active = true;
+        
         //FIXME TOGGLE ME TO SEE THE GAME BREAK
-//         Platform.runLater(() -> stage.hide());
-        thread1.resume();
-        Game.player.setX(x);
-        Game.player.setY(y);
+        Platform.runLater(() -> {
+//            stage.hide();
+            stage.toBack();
+        });
+        
+        Audio.playFile("/Audio/Ambient.mp3");
     }
     
     public static void stopT1() throws InterruptedException {
         thread1.join();
+    }
+    
+    public static void emergency() {
+        Game.player.x = 400;
+        Game.player.y = 200;
     }
     
 }

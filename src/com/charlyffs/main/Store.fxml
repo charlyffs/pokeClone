@@ -15,7 +15,7 @@
             <Image url="@/shelves.png" />
          </image>
       </ImageView>
-      <Button layoutX="28.0" layoutY="183.0" mnemonicParsing="false" onAction="#buyPokeball" prefWidth="82.0" style="-fx-background-color: #5d823d;" text="Buy">
+      <Button fx:id="pokeballBuyButton" layoutX="28.0" layoutY="183.0" mnemonicParsing="false" onAction="#buyPokeball" prefWidth="82.0" style="-fx-background-color: #5d823d;" text="Buy">
          <font>
             <Font size="18.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font size="23.0" />
          </font>
       </Label>
-      <Button layoutX="121.0" layoutY="183.0" mnemonicParsing="false" onAction="#buyPotion" prefWidth="82.0" style="-fx-background-color: #5d823d;" text="Buy">
+      <Button fx:id="potionBuyButton" layoutX="121.0" layoutY="183.0" mnemonicParsing="false" onAction="#buyPotion" prefWidth="82.0" style="-fx-background-color: #5d823d;" text="Buy">
          <font>
             <Font size="18.0" />
          </font>

@@ -3,7 +3,6 @@ package com.charlyffs.main;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
     
@@ -30,34 +29,15 @@ public class Game extends Canvas implements Runnable {
     Game() {
         DataBase.fillTable();
         DataBase.fillPokeDex();
-        System.out.println(DataBase.getPokeDex().size());
-        int width = 1280;
-        int height = 720;
-        new Window(width, height, "PokeClone", this);
+        new Window(1280, 720, "PokeClone", this);
     
         medal1 = new Medal("/bronze.png", 0);
         medal2 = new Medal("/silver.png", 84);
         medal3 = new Medal("/gold.png", 168);
-        player = new Player(ID.Player, 400, 200, playerGender, playerName);
-        handler.addObject(player);
         handler.addObject(medal1);
         handler.addObject(medal2);
         handler.addObject(medal3);
         
-        Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
-        Random RNG = new Random();
-        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
-        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
-        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
-        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
-        Player.getPokemon().add(DataBase.getPokemon(RNG.nextInt(150)).clone());
-        
-        
-        Player.getInventory().add(new Potion("Healing potion", 50));
-        Player.getInventory().add(new Pokeball());
-        
-        System.out.println(player.toString());
-        System.out.println(Player.getPokemon().get(0).toString());
         camera = new Camera(0, 0);
         this.addKeyListener(new KeyInput());
     
@@ -67,6 +47,17 @@ public class Game extends Canvas implements Runnable {
         levelArt = loader.loadImage("/Art.png");
         
         loadLevel(geometry);
+    
+        player = new Player(ID.Player, 400, 200, playerGender, playerName);
+        handler.addObject(player);
+        Player.getPokemon().add(DataBase.getPokemon(starterPokemon).clone());
+    
+        Pokemon godPokemon = DataBase.getPokeDex().get(130).clone();
+        godPokemon.setHp(9999999);
+        godPokemon.getAttacks().get(0).setHp(999999);
+        godPokemon.setLevel(99999);
+        godPokemon.reset();
+        Player.addToBank(godPokemon);
         
     }
     
@@ -74,6 +65,7 @@ public class Game extends Canvas implements Runnable {
      * Kills the game.
      */
     private synchronized void stop() {
+        System.out.println("STOP");
         try {
             GameObserver.stopT1();
             running = false;
@@ -107,7 +99,6 @@ public class Game extends Canvas implements Runnable {
                 render();
                 frames++;
             }
-            
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 System.out.println("FPS: " + frames);
@@ -228,9 +219,9 @@ public class Game extends Canvas implements Runnable {
     
         //3 Gym fights
     
-        gym1 = new Encounter(2432, 64, 3, true);
-        gym2 = new Encounter(2784, 64, 3, true);
-        gym3 = new Encounter(2784, 320, 3, true);
+        gym1 = new Encounter(2432, 64, 50, true);
+        gym2 = new Encounter(2784, 64, 100, true);
+        gym3 = new Encounter(2784, 320, 150, true);
         
         handler.addObject(gym1);
         handler.addObject(gym2);

@@ -33,7 +33,10 @@ public class Encounter extends GameObject {
                         handler.setDown(false);
                         handler.setLeft(false);
                         handler.setRight(false);
+                        Game.player.velX = 0;
+                        Game.player.velY = 0;
                         System.out.println("Encounter.");
+                        Audio.playFile(isGym ? "/Audio/Gym.mp3" : "/Audio/Battle.mp3");
                         Player.immunity = 20;
                         GameObserver.startFight(type, isGym, this);
                     } else {

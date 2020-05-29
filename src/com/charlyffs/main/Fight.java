@@ -9,6 +9,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -45,9 +48,11 @@ public class Fight {
             sum += pokemon.getLevel();
             x++;
         }
-    
+        
         x = sum / x;
         x--;
+    
+        x = Math.min(x, 60);
         
         //If gym, get 6 random pokemon of specified type, else, get 1 pokemon
         for (int i = 0; i < (isGym ? 6 : 1); i++) {
@@ -57,7 +62,7 @@ public class Fight {
             enemyPokemonList.add(DataBase.getPokeDex().get(index).clone());
         }
     
-        x = isGym ? 20 : x;
+        x = isGym ? 10 : x;
         
         for (Pokemon pokemon : enemyPokemonList) {
             int index = enemyPokemonList.indexOf(pokemon);
@@ -123,9 +128,10 @@ public class Fight {
     
     public void quitFight() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        pokemonInventory.add(pokemonIndex, playerPokemon);
          if (enemyPokemon.getCurrentHP() < 1) {
-            alert.setHeaderText("Victory");
+             pokemonInventory.add(pokemonIndex, playerPokemon);
+             Audio.playFile("/Audio/Corridazo.mp3");
+             alert.setHeaderText("Victory");
              Player.setBalance(Player.getBalance() + 15);
              
              for (Pokemon pokemon : pokemonInventory) {
@@ -154,9 +160,7 @@ public class Fight {
                      alert.setHeaderText("CONGLATURATION " + Game.player.getName() + ". YOU ARE WINNER");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
-                     // fixme change to System.exit() I just find it funny that it
-                     //  goes nuclear at the end of the game
-//                     Platform.exit();
+//                     System.exit(0);
                  }
              }
         } else {
@@ -173,21 +177,25 @@ public class Fight {
     }
     
     public void doAction1() {
+        Audio.playAttack();
         playerPokemon.getAttacks().get(0).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction2() {
+        Audio.playAttack();
         playerPokemon.getAttacks().get(1).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction3() {
+        Audio.playAttack();
         playerPokemon.getAttacks().get(2).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
     
     public void doAction4() {
+        Audio.playAttack();
         playerPokemon.getAttacks().get(3).use(playerPokemon, enemyPokemon);
         changeTurn();
     }
@@ -289,6 +297,7 @@ public class Fight {
     }
     
     public void runClicked() {
+        pokemonInventory.add(pokemonIndex, playerPokemon);
         quitFight();
     }
     
@@ -308,6 +317,9 @@ public class Fight {
     }
     
     private void getLivingPokemon() {
+        if (playerPokemon != null) {
+            pokemonInventory.add(pokemonIndex, playerPokemon);
+        }
         for (Pokemon pokemon : pokemonInventory) {
             if (pokemon.getCurrentHP() > 0) {
                 pokemonIndex = pokemonInventory.indexOf(pokemon);
@@ -417,7 +429,7 @@ public class Fight {
         Pokemon holder;
         try {
             holder = pokemonInventory.get(index);
-            label.setText(holder.getName() + ". Level: " + holder.getLevel() + ".");
+            label.setText(holder.getName() + ". Level: " + holder.getLevel() + ". HP: " + holder.getCurrentHP() + ".");
             imageView.setImage(new Image(holder.getURL()));
             imageView.setVisible(true);
             button.setVisible(true);

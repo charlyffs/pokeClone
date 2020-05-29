@@ -62,4 +62,5 @@ public class StartupWindow {
         playerPicture.setImage(new Image("/female.png"));
         gender = 1;
     }
+    
 }

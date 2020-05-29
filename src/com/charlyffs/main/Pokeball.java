@@ -14,7 +14,7 @@ public class Pokeball extends Item {
         ArrayList<Pokemon> pokemon = Player.getPokemon();
         if ((double) enemy.getCurrentHP() / enemy.getHp() <= 0.5) {
             Random rng = new Random();
-            if (rng.nextInt(10) > 1) {
+            if (rng.nextInt(10) > 4) {
                 System.out.println("Caught");
                 if (pokemon.size() < 5) {
                     System.out.println("Added to belt");

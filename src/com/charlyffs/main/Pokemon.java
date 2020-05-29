@@ -55,7 +55,7 @@ public class Pokemon implements Cloneable{
     }
     
     public static Pokemon endOfBattle(Pokemon pokemon) {
-        pokemon.xp += 100;
+        pokemon.xp += 75;
         pokemon.participated = false;
         if (pokemon.xp >= pokemon.xpCap) {
             pokemon = levelup(pokemon);
@@ -66,7 +66,7 @@ public class Pokemon implements Cloneable{
     public static Pokemon levelup(Pokemon pokemon) {
     
         pokemon.level += 1;
-        pokemon.xp = 0;
+        pokemon.xp -= 100;
         pokemon.hp *= 1.1;
         Attack attack = pokemon.getAttacks().get(0);
         attack.setHp(attack.getHp() + 2);

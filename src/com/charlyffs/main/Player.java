@@ -21,7 +21,7 @@ public class Player extends GameObject {
         pokemon = new ArrayList<>();
         inventory = new ArrayList<>();
         bank = new ArrayList<>();
-        balance = 100;
+        balance = 50;
         immunity = 0;
         path = gender == 0 ? "/male.png" : "/female.png";
     }
@@ -92,11 +92,7 @@ public class Player extends GameObject {
         right = new Rectangle(x - range, y + 37, range, 8);
         
         g.drawImage(loader.loadImage(path), x, y, null);
-        //todo remove debug raycast boxes
-//        g.drawRect((int) up.getX(), (int) up.getY(), (int) up.getWidth(), (int) up.getHeight());
-//        g.drawRect((int) down.getX(), (int) down.getY(), (int) down.getWidth(), (int) down.getHeight());
-//        g.drawRect((int) left.getX(), (int) left.getY(), (int) left.getWidth(), (int) left.getHeight());
-//        g.drawRect((int) right.getX(), (int) right.getY(), (int) right.getWidth(), (int) right.getHeight());
+        
     }
     
     public static ArrayList<Pokemon> getPokemon() {
@@ -111,17 +107,6 @@ public class Player extends GameObject {
         return bank;
     }
     
-    @Override
-    public String toString() {
-        return "Player{" +
-                "pokemon=" + pokemon +
-//                ", inventory=" + inventory +
-                ", name='" + name + '\'' +
-                ", gender=" + gender +
-                ", range=" + range +
-                '}';
-    }
-    
     public static int getBalance() {
         return balance;
     }
@@ -133,6 +118,5 @@ public class Player extends GameObject {
     public static void addToBank(Pokemon pokemon) {
         bank.add(pokemon);
     }
-    
     
 }

@@ -128,21 +128,6 @@ public class DataBase {
         return modifier[target][source];
     }
     
-    static void showTable() {
-        System.out.print("   ");
-        for (int x = 0; x < 17; x++) {
-            System.out.print(x + (x < 10 ? "   " : "  "));
-        }
-        System.out.println();
-        for (int i = 0; i < 17; i++) {
-            System.out.print(i + " ");
-            for (int f = 0; f < 17; f++) {
-                System.out.print(modifier[f][i] + " ");
-            }
-            System.out.println();
-        }
-    }
-    
     public static void fillPokeDex() {
         
         pokeDex.add(new Pokemon(16, "Pidgey",  40, 0, "Tackle", true));
@@ -210,10 +195,6 @@ public class DataBase {
         pokeDex.add(new Pokemon(134, "Vaporeon",  130, 2, "Water Gun", false));
         pokeDex.add(new Pokemon(129, "Magikarp", 20, 2, "Splash", true));
         pokeDex.add(new Pokemon(1, "Bulbasaur", 45, 3, "Tackle", true));
-//        pokeDex.get(pokeDex.size() - 1).setCurrentHP(999999999);
-//        pokeDex.get(pokeDex.size() - 1).setHp(999999999);
-//        pokeDex.get(pokeDex.size() - 1).getAttacks().get(0).setHp(999999999);
-//        pokeDex.get(pokeDex.size() - 1).setLevel(999);
         pokeDex.add(new Pokemon(2, "Ivysaur",  60, 3, "Vine Whip", true));
         pokeDex.add(new Pokemon(3, "Venusaur",  80, 3, "Petal Blizzard", false));
         pokeDex.add(new Pokemon(43, "Oddish",  45, 3, "Absorb", true));

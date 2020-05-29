@@ -41,14 +41,14 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextArea fx:id="belt1InfoArea" layoutX="89.0" layoutY="83.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <TextArea fx:id="belt1InfoArea" focusTraversable="false" layoutX="89.0" layoutY="83.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
       <ImageView fx:id="belt1ImageView" fitHeight="100.0" fitWidth="101.0" layoutX="-6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="belt2NameLabel" alignment="CENTER" layoutX="8.0" layoutY="291.0" opacity="0.76" prefHeight="54.0" prefWidth="75.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextArea fx:id="belt2InfoArea" layoutX="89.0" layoutY="220.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <TextArea fx:id="belt2InfoArea" focusTraversable="false" layoutX="89.0" layoutY="220.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
       <ImageView fx:id="belt2ImageView" fitHeight="100.0" fitWidth="101.0" layoutX="-6.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="bank1AddButton" layoutX="214.0" layoutY="138.0" mnemonicParsing="false" onAction="#bank1AddButtonClicked" prefHeight="42.0" prefWidth="125.0" style="-fx-background-color: #5d823d;" text="&lt;-">
          <font>
@@ -72,14 +72,14 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <TextArea fx:id="bank1InfoArea" layoutX="348.0" layoutY="88.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <TextArea fx:id="bank1InfoArea" focusTraversable="false" layoutX="348.0" layoutY="88.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
       <ImageView fx:id="bank1ImageView" fitHeight="84.0" fitWidth="93.0" layoutX="464.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="bank2NameLabel" alignment="CENTER" layoutX="473.0" layoutY="294.0" opacity="0.76" prefHeight="54.0" prefWidth="78.0" style="-fx-background-color: #c9c9c9;" text="NAME" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <TextArea fx:id="bank2InfoArea" layoutX="348.0" layoutY="225.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
+      <TextArea fx:id="bank2InfoArea" focusTraversable="false" layoutX="348.0" layoutY="225.0" opacity="0.81" prefHeight="100.0" prefWidth="115.0" text="PKMN INFO" />
       <ImageView fx:id="bank2ImageView" fitHeight="92.0" fitWidth="101.0" layoutX="460.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="belt2RemoveButton" layoutX="212.0" layoutY="223.0" mnemonicParsing="false" onAction="#belt2RemoveButtonClicked" prefHeight="42.0" prefWidth="126.0" style="-fx-background-color: #c95234;" text="-&gt;">
          <font>

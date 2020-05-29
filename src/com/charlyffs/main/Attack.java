@@ -21,6 +21,7 @@ class Attack {
     void use(Pokemon source, Pokemon target) {
         double amount = hp * (DataBase.getModifier(source.getType(), target.getType()));
         target.damage(amount);
+        target.setCurrentHP(Math.max(target.getCurrentHP(), 0));
         System.out.println(source.getName() + " used " + name + " on " + target.getName() + " for a total damage of: " + amount);
     }
     

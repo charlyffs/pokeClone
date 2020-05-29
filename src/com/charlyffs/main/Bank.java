@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class Bank {
     
-    public Button belt1RemoveButton, bank1AddButton, belt2RemoveButton, bank2AddButton, beltPrevPageButton, beltNextPageButton, bankPrevPageButton, bankNextPageButton;
+    public Button belt1RemoveButton, bank1AddButton, belt2RemoveButton, bank2AddButton,
+            beltPrevPageButton, beltNextPageButton, bankPrevPageButton, bankNextPageButton;
     public TextArea bank1InfoArea, bank2InfoArea, belt1InfoArea, belt2InfoArea;
     public Label belt1NameLabel, belt2NameLabel, bank1NameLabel, bank2NameLabel;
     public ImageView belt1ImageView, belt2ImageView, bank1ImageView, bank2ImageView;
@@ -22,6 +23,9 @@ public class Bank {
     
         beltPrevPageButton.setDisable(beltPage == 0);
         bankPrevPageButton.setDisable(bankPage == 0);
+    
+        beltPrevPageButton.setOpacity(beltPage == 0 ? 0.2 : 0.8);
+        bankPrevPageButton.setOpacity(bankPage == 0 ? 0.2 : 0.8);
         
         Pokemon
                 belt1Pokemon = null,
@@ -45,22 +49,23 @@ public class Bank {
     
         setPanels(bank1Pokemon, bank1NameLabel, bank1InfoArea, bank1ImageView, bankNextPageButton, bank1AddButton);
         setPanels(bank2Pokemon, bank2NameLabel, bank2InfoArea, bank2ImageView, bankNextPageButton, bank2AddButton);
-        
-        bank1AddButton.setDisable(belt.size() == 6);
-        bank2AddButton.setDisable(belt.size() == 6);
-        
+    
+        bank1AddButton.setDisable(belt.size() == 6 || bank1AddButton.isDisabled());
+        bank2AddButton.setDisable(belt.size() == 6 || bank2AddButton.isDisabled());
     }
     
-    private void setPanels(Pokemon Pokemon, Label NameLabel, TextArea InfoArea, ImageView ImageView, Button NextPageButton, Button addRemoveButton) {
+    private void setPanels(Pokemon Pokemon, Label NameLabel, TextArea InfoArea, ImageView ImageView,
+                           Button NextPageButton, Button addRemoveButton) {
         try {
             NameLabel.setText(Pokemon.getName());
             InfoArea.setText(infoText(Pokemon));
             ImageView.setImage(new Image(Pokemon.getURL()));
             NextPageButton.setDisable(false);
+            NextPageButton.setOpacity(0.8);
             addRemoveButton.setDisable(false);
         } catch (Exception e) {
-            NameLabel.setDisable(true);
-            InfoArea.setDisable(true);
+            NameLabel.setText("");
+            InfoArea.setText("");
             ImageView.setImage(null);
             NextPageButton.setDisable(true);
             addRemoveButton.setDisable(true);
@@ -69,16 +74,19 @@ public class Bank {
             belt.get(beltPage + 2);
         } catch (Exception e) {
             beltNextPageButton.setDisable(true);
+            beltNextPageButton.setOpacity(0.2);
         }
         try {
             bank.get(bankPage + 2);
         } catch (Exception e) {
             bankNextPageButton.setDisable(true);
+            bankNextPageButton.setOpacity(0.2);
         }
     }
     
     private String infoText(Pokemon pokemon) {
-        return "";
+        return "#" + pokemon.getNat() + ". \nName: " + pokemon.getName() + ". \nHP: " + pokemon.getCurrentHP() +
+                ". \nLevel: " + pokemon.getLevel() + ".";
     }
     
     public void belt1RemoveButtonClicked() {

@@ -27,13 +27,13 @@
       <Button fx:id="action4Button" layoutX="183.5" layoutY="248.5" mnemonicParsing="false" onAction="#doAction4" prefHeight="26.0" prefWidth="120.0" text="Action4" />
       <TextArea disable="true" layoutX="14.0" layoutY="14.0" opacity="0.4" prefHeight="53.0" prefWidth="198.0" />
       <Label fx:id="pokemonName" layoutX="19.0" layoutY="19.0" text="Name" />
-      <Label fx:id="pokemonLevel" layoutX="172.0" layoutY="19.0" text="Lv XX" />
+      <Label fx:id="pokemonLevel" layoutX="150.0" layoutY="19.0" text="Lv XX" />
       <Label layoutX="21.0" layoutY="41.0" text="Hp" />
       <Pane fx:id="pokemonHealthBar" layoutX="45.0" layoutY="40.0" prefHeight="18.0" prefWidth="156.0" style="-fx-background-color: #00FF00;" />
       <Button fx:id="action2Button" layoutX="25.0" layoutY="248.0" mnemonicParsing="false" onAction="#doAction2" prefHeight="26.0" prefWidth="120.0" text="Action2" />
       <TextArea disable="true" layoutX="297.0" layoutY="14.0" opacity="0.4" prefHeight="53.0" prefWidth="198.0" />
       <Label fx:id="enemyName" layoutX="302.0" layoutY="19.0" text="Name" />
-      <Label fx:id="enemyLevel" layoutX="455.0" layoutY="19.0" text="Lv XX" />
+      <Label fx:id="enemyLevel" layoutX="433.0" layoutY="19.0" text="Lv XX" />
       <Label layoutX="304.0" layoutY="41.0" text="Hp" />
       <Pane fx:id="enemyHealthBar" layoutX="328.0" layoutY="40.0" prefHeight="18.0" prefWidth="156.0" style="-fx-background-color: #FF0000;" />
       <TextArea fx:id="invBackground" disable="true" layoutX="346.0" layoutY="71.0" prefHeight="132.0" prefWidth="162.0" />

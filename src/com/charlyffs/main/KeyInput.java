@@ -14,17 +14,18 @@ public class KeyInput extends KeyAdapter {
      * Is player trying to go up, down, left, or right?
      */
     
-    boolean shown = false;
+    public static boolean active = true;
+    
     public void keyPressed(KeyEvent event) {
         int key = event.getKeyCode();
-        for (GameObject object : handler.objects) {
-            if (object.getId() == ID.Player) {
-                if (key == KeyEvent.VK_W) handler.setUp(true);
-                if (key == KeyEvent.VK_A) handler.setLeft(true);
-                if (key == KeyEvent.VK_S) handler.setDown(true);
-                if (key == KeyEvent.VK_D) handler.setRight(true);
-                if (key == KeyEvent.VK_SPACE) {
-                    Player.immunity += 20;
+        if (active) {
+            for (GameObject object : handler.objects) {
+                if (object.getId() == ID.Player) {
+                    if (key == KeyEvent.VK_W) handler.setUp(true);
+                    if (key == KeyEvent.VK_A) handler.setLeft(true);
+                    if (key == KeyEvent.VK_S) handler.setDown(true);
+                    if (key == KeyEvent.VK_D) handler.setRight(true);
+                    if (key == KeyEvent.VK_H) GameObserver.emergency();
                 }
             }
         }
