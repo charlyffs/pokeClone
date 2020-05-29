@@ -31,12 +31,12 @@ public class Fight {
     private ArrayList<Pokemon> pokemonInventory, enemyPokemonList;
     private ArrayList<Item> inventory;
     private Pokemon playerPokemon, enemyPokemon;
-    private int pokemonIndex;
+    private int pokemonIndex, z;
     private final Random RNG = new Random();
     public static boolean isGym = false;
     
-    void startFight(int type, boolean gym) {
-        
+    void startFight(int type, boolean gym, int z) {
+        this.z = z;
         isGym = gym;
         
         pokemonInventory = Player.getPokemon();
@@ -61,12 +61,10 @@ public class Fight {
             int index = RNG.nextInt(type);
             enemyPokemonList.add(DataBase.getPokeDex().get(index).clone());
         }
-    
-        x = isGym ? 10 : x;
         
         for (Pokemon pokemon : enemyPokemonList) {
             int index = enemyPokemonList.indexOf(pokemon);
-            for (int i = 0; i < x; i++) {
+            for (int i = 0; i < (isGym ? z : x); i++) {
                 enemyPokemonList.set(index, Pokemon.levelup(pokemon));
                 pokemon = enemyPokemonList.get(index);
             }
@@ -130,7 +128,7 @@ public class Fight {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
          if (enemyPokemon.getCurrentHP() < 1) {
              pokemonInventory.add(pokemonIndex, playerPokemon);
-             Audio.playFile("/Audio/Corridazo.mp3");
+             Audio.playFile("/Audio/Victory.mp3");
              alert.setHeaderText("Victory");
              Player.setBalance(Player.getBalance() + 15);
              
@@ -143,7 +141,7 @@ public class Fight {
              if (isGym) {
                  GameObserver.gymBeaten();
                  Game.medals += 1;
-                 switch (Game.medals) {
+                 switch (z / 10) {
                      case 1:
                          Game.medal1.setRendering(true);
                          break;
@@ -157,7 +155,7 @@ public class Fight {
                          System.out.println("Game over");
                  }
                  if (Game.medals == 3) {
-                     alert.setHeaderText("CONGLATURATION " + Game.player.getName() + ". YOU ARE WINNER");
+                     alert.setHeaderText("Congratulations " + Game.player.getName() + "! You won the game!");
                      alert.setTitle("GOODBYE");
                      alert.showAndWait();
 //                     System.exit(0);
@@ -306,12 +304,13 @@ public class Fight {
             enemyDead();
             setEnemyVisuals();
             updateBars();
-        }
-        Random RNG = new Random();
-        enemyPokemon.getAttacks().get(RNG.nextInt(enemyPokemon.getAttacks().size())).use(enemyPokemon, playerPokemon);
-        updateBars();
-        if (playerPokemon.getCurrentHP() < 1){
-            getLivingPokemon();
+        } else {
+            Random RNG = new Random();
+            enemyPokemon.getAttacks().get(RNG.nextInt(enemyPokemon.getAttacks().size())).use(enemyPokemon, playerPokemon);
+            updateBars();
+            if (playerPokemon.getCurrentHP() < 1){
+                getLivingPokemon();
+            }
         }
         printData();
     }

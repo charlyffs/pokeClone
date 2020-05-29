@@ -37,8 +37,6 @@ public class Store extends GameObject {
     
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.blue);
-        g.drawRect(getX(), getY(), width * 32, height * 32);
     }
     
 }

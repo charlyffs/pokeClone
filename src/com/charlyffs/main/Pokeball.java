@@ -23,7 +23,6 @@ public class Pokeball extends Item {
                     System.out.println("Added to bank");
                     Player.addToBank(enemy.clone());
                 }
-                pokemon.get(pokemon.size() - 1).reset();
                 enemy.damage(enemy.getCurrentHP());
             }
         } else {

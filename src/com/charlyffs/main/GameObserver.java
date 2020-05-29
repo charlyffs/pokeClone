@@ -101,7 +101,7 @@ public class GameObserver extends Application {
     
     private static Encounter currentEncounter;
     
-    static void startFight(int type, boolean gym, Encounter encounter) {
+    static void startFight(int type, boolean gym, Encounter encounter, int z) {
         currentEncounter = encounter;
         if (loader.getController() != fight) {
             loader = new FXMLLoader(GameObserver.class.getResource("Fight.fxml"));
@@ -114,7 +114,7 @@ public class GameObserver extends Application {
             fight = loader.getController();
             switchStage("Fight");
         }
-        fight.startFight(type, gym);
+        fight.startFight(type, gym, z);
         showStage();
     }
     
@@ -130,6 +130,8 @@ public class GameObserver extends Application {
             stage.toFront();
 //            stage.show();
         });
+        Game.player.velX = 0;
+        Game.player.velY = 0;
     }
     
     public static void hideStage() {

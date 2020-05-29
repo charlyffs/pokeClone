@@ -5,15 +5,16 @@ import java.awt.*;
 public class Encounter extends GameObject {
     
     private boolean collides = false;
-    private final int type;
+    private final int type, z;
     private final boolean isGym;
     private boolean isBeaten;
     
-    public Encounter(int x, int y, int type, boolean isGym) {
+    public Encounter(int x, int y, int type, boolean isGym, int level) {
         super(ID.Encounter, x, y);
         this.type = type;
         this.isGym = isGym;
         isBeaten = false;
+        this.z = level;
     }
     
     @Override
@@ -38,7 +39,7 @@ public class Encounter extends GameObject {
                         System.out.println("Encounter.");
                         Audio.playFile(isGym ? "/Audio/Gym.mp3" : "/Audio/Battle.mp3");
                         Player.immunity = 20;
-                        GameObserver.startFight(type, isGym, this);
+                        GameObserver.startFight(type, isGym, this, z);
                     } else {
                         Player.immunity -= 1;
                     }

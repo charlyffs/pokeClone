@@ -177,7 +177,7 @@ public class Game extends Canvas implements Runnable {
                 if (red == 255) {
                     handler.addObject(new Block(x, y - 1));
                 } else if (colorsEqual(100)) {
-                    handler.addObject(new Encounter(x, y, 150, false));
+                    handler.addObject(new Encounter(x, y, 150, false, 0));
                 } else if (colorsEqual(131)) {
                     handler.addObject(new Transition(x, y, 216, 930, 1,1));
                 } else if (colorsEqual(141)) {
@@ -219,9 +219,9 @@ public class Game extends Canvas implements Runnable {
     
         //3 Gym fights
     
-        gym1 = new Encounter(2432, 64, 50, true);
-        gym2 = new Encounter(2784, 64, 100, true);
-        gym3 = new Encounter(2784, 320, 150, true);
+        gym1 = new Encounter(2432, 64, 50, true, 30);
+        gym2 = new Encounter(2784, 64, 100, true, 10);
+        gym3 = new Encounter(2784, 320, 150, true, 20);
         
         handler.addObject(gym1);
         handler.addObject(gym2);
